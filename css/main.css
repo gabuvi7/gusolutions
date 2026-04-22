@@ -81,9 +81,14 @@ section{padding:6rem 4rem;max-width:1200px;margin:0 auto;}
 /* PROJECT GALLERY */
 .project-gallery{
   display:grid;
-  grid-template-columns:1.08fr .92fr;
+  grid-template-columns:repeat(2,1fr);
   gap:1rem;
   margin-top:1.5rem;
+}
+@media(min-width:1050px){
+  .project-gallery{
+    grid-template-columns:repeat(3,1fr);
+  }
 }
 .project-shot{
   position:relative;
@@ -92,6 +97,7 @@ section{padding:6rem 4rem;max-width:1200px;margin:0 auto;}
   border-radius:10px;
   background:#0d0d0d;
   box-shadow:0 10px 30px rgba(0,0,0,.22);
+  min-height:200px;
 }
 .project-shot img{
   display:block;
@@ -103,30 +109,60 @@ section{padding:6rem 4rem;max-width:1200px;margin:0 auto;}
 .project-shot:hover img{
   transform:scale(1.02);
 }
+/* Taller, opaque caption band so titles/descriptions never sit on bright UI */
 .project-shot-caption{
   position:absolute;
   left:0;
   right:0;
   bottom:0;
-  padding:1rem 1.1rem;
-  background:linear-gradient(to top, rgba(10,10,10,.92), rgba(10,10,10,.0));
+  top:36%;
+  min-height:8.5rem;
+  padding:1rem 1.15rem 1.15rem;
   display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:1rem;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:stretch;
+  gap:0;
+  background:linear-gradient(
+    to top,
+    rgba(6,6,6,.98) 0%,
+    rgba(8,8,8,.94) 28%,
+    rgba(10,10,10,.82) 70%,
+    rgba(10,10,10,.45) 100%
+  );
+  backdrop-filter:blur(5px);
+  -webkit-backdrop-filter:blur(5px);
+  border-top:1px solid rgba(255,255,255,.08);
 }
 .project-shot-title{
   font-family:var(--fm);
-  font-size:10px;
-  letter-spacing:.14em;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.11em;
   text-transform:uppercase;
   color:var(--accent);
+  line-height:1.35;
+  text-shadow:0 1px 2px rgba(0,0,0,.9);
+  margin-bottom:.4rem;
+  -webkit-font-smoothing:antialiased;
 }
 .project-shot-desc{
-  font-size:13px;
-  color:var(--text);
-  line-height:1.45;
-  max-width:420px;
+  font-size:12px;
+  font-weight:400;
+  color:rgba(248,245,238,.96);
+  line-height:1.5;
+  max-width:100%;
+  text-shadow:0 1px 3px rgba(0,0,0,.85);
+}
+@media(min-width:1050px){
+  .project-shot-desc{font-size:13px;}
+}
+@media(max-width:640px){
+  .project-shot-caption{
+    top:32%;
+    min-height:7.5rem;
+    padding:.85rem 1rem 1rem;
+  }
 }
 .project-proof{
   display:inline-flex;
@@ -150,12 +186,71 @@ section{padding:6rem 4rem;max-width:1200px;margin:0 auto;}
   background:var(--accent2);
   box-shadow:0 0 0 4px rgba(126,251,202,.12);
 }
-@media(max-width:900px){
+@media(max-width:640px){
   .project-gallery{
     grid-template-columns:1fr;
   }
 }
 
+.project-gallery .project-shot{
+  cursor:zoom-in;
+}
+
+/* IMAGE LIGHTBOX (project screenshots) */
+.image-lightbox{
+  position:fixed;
+  inset:0;
+  z-index:250;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:3.25rem 1.25rem 1.25rem;
+  background:rgba(6,6,6,.92);
+  backdrop-filter:blur(12px);
+  cursor:zoom-out;
+  -webkit-tap-highlight-color:transparent;
+}
+.image-lightbox[hidden]{
+  display:none!important;
+}
+.image-lightbox img{
+  cursor:default;
+  max-width:min(96vw,1400px);
+  max-height:calc(100vh - 5rem);
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 24px 80px rgba(0,0,0,.5);
+}
+.image-lightbox-close{
+  position:fixed;
+  top:1rem;
+  right:1rem;
+  z-index:251;
+  width:2.5rem;
+  height:2.5rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  font-size:1.35rem;
+  line-height:1;
+  color:var(--text);
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--border);
+  border-radius:4px;
+  cursor:pointer;
+  font-family:var(--fm);
+  transition:border-color .2s,color .2s,background .2s;
+}
+.image-lightbox-close:hover{
+  border-color:var(--accent);
+  color:var(--accent);
+  background:rgba(200,245,102,.08);
+}
 
 /* MINOR PROJECTS */
 .projects-grid-minor{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-top:none;}
