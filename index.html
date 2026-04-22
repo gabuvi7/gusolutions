@@ -1,0 +1,1258 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gabriel Oscar Uviedo — GU Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a href="#" class="nav-logo">GU / gusolutions.com.ar</a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li>
+            <a href="#proyectos" data-es="Proyectos" data-en="Projects"
+              >Proyectos</a
+            >
+          </li>
+          <li>
+            <a href="#experiencia" data-es="Experiencia" data-en="Experience"
+              >Experiencia</a
+            >
+          </li>
+          <li><a href="#skills">Skills</a></li>
+          <li>
+            <a href="#contacto" data-es="Contacto" data-en="Contact"
+              >Contacto</a
+            >
+          </li>
+        </ul>
+        <div class="lang-toggle">
+          <button class="lang-btn" id="btn-es" onclick="setLang('es')">
+            ES
+          </button>
+          <button class="lang-btn active" id="btn-en" onclick="setLang('en')">
+            EN
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-left">
+        <div
+          class="hero-tag"
+          data-es="GU Solutions · Sistemas a medida"
+          data-en="GU Solutions · Custom systems"
+        >
+          GU Solutions · Custom systems
+        </div>
+        <h1 class="hero-name">Gabriel<br /><span>Uviedo</span></h1>
+        <p
+          class="hero-bio"
+          data-es="Construyo sistemas a medida que resuelven operaciones reales: reemplazan planillas, automatizan flujos complejos y ordenan procesos que hoy consumen tiempo. Trabajo de punta a punta — frontend, backend, base de datos y puesta en producción — para convertir problemas de negocio en software claro, mantenible y listo para usar."
+          data-en="I build custom systems for real operations: replacing spreadsheets, automating complex workflows, and bringing order to processes that waste time today. I work end-to-end — frontend, backend, data, and production deployment — to turn business problems into clear, maintainable software."
+        >
+          Construyo sistemas a medida que resuelven operaciones reales:
+          reemplazan planillas, automatizan flujos complejos y ordenan procesos
+          que hoy consumen tiempo. Trabajo de punta a punta — frontend, backend,
+          base de datos y puesta en producción — para convertir problemas de
+          negocio en software claro, mantenible y listo para usar.
+        </p>
+        <div class="hero-cta">
+          <a href="mailto:uviedo_gabriel@hotmail.com" class="btn-primary">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-10 7L2 7" />
+            </svg>
+            <span
+              data-es="Contame tu proyecto"
+              data-en="Tell me about your project"
+              >Contame tu proyecto</span
+            >
+          </a>
+          <a
+            href="https://www.linkedin.com/in/uviedo-gabriel/"
+            target="_blank"
+            rel="noopener"
+            class="btn-outline"
+            >LinkedIn &rarr;</a
+          >
+          <a
+            href="https://github.com/gabuvi7"
+            target="_blank"
+            rel="noopener"
+            class="btn-outline"
+            >GitHub &rarr;</a
+          >
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-stats">
+          <div class="stat-cell">
+            <div class="stat-num">7+</div>
+            <div
+              class="stat-label"
+              data-es="Años de experiencia"
+              data-en="Years of experience"
+            >
+              Años de experiencia
+            </div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num">E2E</div>
+            <div
+              class="stat-label"
+              data-es="De la idea a producción"
+              data-en="From idea to production"
+            >
+              De la idea a producción
+            </div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num">2+</div>
+            <div
+              class="stat-label"
+              data-es="Sistemas en producción"
+              data-en="Systems I built &amp; deployed"
+            >
+              Sistemas en producción
+            </div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num">ES / EN</div>
+            <div
+              class="stat-label"
+              data-es="Español e inglés"
+              data-en="Spanish &amp; English"
+            >
+              Español e inglés
+            </div>
+          </div>
+        </div>
+        <div class="hero-location">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M20 10c0 6-8 13-8 13s-8-7-8-13a8 8 0 0 1 16 0Z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          <span
+            data-es="Buenos Aires, Argentina — trabajo remoto con empresas de cualquier parte"
+            data-en="Buenos Aires, Argentina — remote-first, working with teams anywhere"
+            >Buenos Aires, Argentina — trabajo remoto con empresas de cualquier
+            parte</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- MARQUEE -->
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <span class="marquee-item"><span class="marquee-dot"></span>React</span>
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>TypeScript</span
+        >
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>Next.js</span
+        >
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>Supabase</span
+        >
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>Node.js</span
+        >
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>PostgreSQL</span
+        >
+        <span class="marquee-item"><span class="marquee-dot"></span>Vite</span>
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>Vercel</span
+        >
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>REST APIs</span
+        >
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>Design Systems</span
+        >
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>Chrome Extension</span
+        >
+        <span class="marquee-item"><span class="marquee-dot"></span>.NET</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>React</span>
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>TypeScript</span
+        >
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>Next.js</span
+        >
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>Supabase</span
+        >
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>Node.js</span
+        >
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>PostgreSQL</span
+        >
+        <span class="marquee-item"><span class="marquee-dot"></span>Vite</span>
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>Vercel</span
+        >
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>REST APIs</span
+        >
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>Design Systems</span
+        >
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>Chrome Extension</span
+        >
+        <span class="marquee-item"><span class="marquee-dot"></span>.NET</span>
+      </div>
+    </div>
+
+    <!-- WHAT I BUILD -->
+    <section style="padding-bottom: 0">
+      <div class="section-label" data-es="Qué construyo" data-en="What I build">
+        Qué construyo
+      </div>
+      <h2
+        class="section-title"
+        data-es="Sistemas a medida para negocios reales"
+        data-en="Custom systems for real businesses"
+      >
+        Sistemas a medida para negocios reales
+      </h2>
+      <div class="approach-strip fade-in">
+        <div class="approach-cell">
+          <div class="approach-icon">&#9635;</div>
+          <div
+            class="approach-title"
+            data-es="Sistemas internos"
+            data-en="Internal systems"
+          >
+            Sistemas internos
+          </div>
+          <div
+            class="approach-desc"
+            data-es="Plataformas internas para digitalizar operaciones, centralizar información y reemplazar procesos manuales por software claro y mantenible."
+            data-en="Internal platforms to digitize operations, centralize information, and replace manual processes with clear, maintainable software."
+          >
+            Plataformas internas para digitalizar operaciones, centralizar
+            información y reemplazar procesos manuales por software claro y
+            mantenible.
+          </div>
+        </div>
+        <div
+          class="approach-cell"
+          style="
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+          "
+        >
+          <div class="approach-icon">&#9678;</div>
+          <div
+            class="approach-title"
+            data-es="Caja, inventario y reportes"
+            data-en="Cash, inventory, and reporting"
+          >
+            Caja, inventario y reportes
+          </div>
+          <div
+            class="approach-desc"
+            data-es="Sistemas con lógica de negocio real: contratos, stock, movimientos, comisiones, liquidaciones y reportes exportables."
+            data-en="Systems with real business logic: contracts, stock, transactions, commissions, settlements, and exportable reports."
+          >
+            Sistemas con lógica de negocio real: contratos, stock, movimientos,
+            comisiones, liquidaciones y reportes exportables.
+          </div>
+        </div>
+        <div class="approach-cell">
+          <div class="approach-icon">&#11041;</div>
+          <div
+            class="approach-title"
+            data-es="Interfaces + backend + deploy"
+            data-en="Frontend + backend + deploy"
+          >
+            Frontend + backend + deploy
+          </div>
+          <div
+            class="approach-desc"
+            data-es="No entrego solo pantallas: entrego el sistema funcionando completo, con base de datos, autenticación y puesta en producción."
+            data-en="I don't just deliver screens: I deliver the full system working in production, with database, authentication, and deployment."
+          >
+            No entrego solo pantallas: entrego el sistema funcionando completo,
+            con base de datos, autenticación y puesta en producción.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section style="padding-bottom: 0">
+      <div class="section-label" data-es="Cómo trabajo" data-en="How I work">
+        Cómo trabajo
+      </div>
+      <h2
+        class="section-title"
+        data-es="De entender el problema a entregarlo funcionando"
+        data-en="From understanding the problem to delivering it live"
+      >
+        De entender el problema a entregarlo funcionando
+      </h2>
+      <div class="approach-strip fade-in">
+        <div class="approach-cell">
+          <div class="approach-icon">&#9678;</div>
+          <div
+            class="approach-title"
+            data-es="Primero, el diseño"
+            data-en="Design first"
+          >
+            Diseño e interfaces
+          </div>
+          <div
+            class="approach-desc"
+            data-es="Primero entiendo el negocio, después diseño pantallas y flujos. La idea es validar rápido cómo va a funcionar el sistema antes de construirlo, para reducir sorpresas y decisiones caras más adelante."
+            data-en="I start by understanding the business, then I design screens and flows. The goal is to validate how the system will work before building it, reducing surprises and expensive decisions later on."
+          >
+            Primero entiendo el negocio, después diseño pantallas y flujos. La
+            idea es validar rápido cómo va a funcionar el sistema antes de
+            construirlo, para reducir sorpresas y decisiones caras más adelante.
+          </div>
+        </div>
+        <div
+          class="approach-cell"
+          style="
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+          "
+        >
+          <div class="approach-icon">&#9635;</div>
+          <div
+            class="approach-title"
+            data-es="Stack completo, sin terceros"
+            data-en="Full stack, no handoffs"
+          >
+            Desarrollo fullstack
+          </div>
+          <div
+            class="approach-desc"
+            data-es="Me ocupo de todo el stack: React y TypeScript en el frontend, APIs REST y lógica de negocio en el servidor, y PostgreSQL o SQL Server en la base de datos. Un solo responsable para todo, sin que nada se pierda entre capas."
+            data-en="I own the full stack: React and TypeScript on the frontend, REST APIs and business logic on the server, and PostgreSQL or SQL Server on the database. One person responsible for the whole system — nothing gets lost between layers."
+          >
+            Trabajo frontend, backend y base de datos como un solo sistema.
+            Menos fricción, menos idas y vueltas, más claridad de punta a punta.
+          </div>
+        </div>
+        <div class="approach-cell">
+          <div class="approach-icon">&#11041;</div>
+          <div
+            class="approach-title"
+            data-es="Listo para usar"
+            data-en="Ready to use"
+          >
+            Entrega en producción
+          </div>
+          <div
+            class="approach-desc"
+            data-es="Entrego el sistema funcionando en producción, con documentación y 30 días de garantía. El cliente no necesita saber de infraestructura para operar su sistema."
+            data-en="I deliver the system live in production, with documentation and a 30-day warranty. The client doesn't need to know anything about infrastructure to run their system."
+          >
+            Entrego el sistema listo para usar en producción, con documentación,
+            deploy y acompañamiento inicial post-entrega.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="proyectos">
+      <div class="section-label" data-es="Portfolio" data-en="Portfolio">
+        Casos reales
+      </div>
+      <h2 class="section-title" data-es="Casos reales" data-en="Selected work">
+        Sistemas que ya están resolviendo problemas reales
+      </h2>
+      <p
+        style="
+          max-width: 760px;
+          color: var(--muted);
+          font-size: 15px;
+          line-height: 1.85;
+          margin: -1.5rem 0 2.5rem;
+        "
+        data-es="No son ejercicios ni demos. Son sistemas diseñados alrededor de operaciones reales: contratos, caja, stock, reportes, integraciones y flujos que hoy usan personas y negocios concretos."
+        data-en="These are not demos or exercises. They are systems designed around real operations: contracts, cash flow, stock, reporting, integrations, and workflows used by actual people and businesses."
+      >
+        No son ejercicios ni demos. Son sistemas diseñados alrededor de
+        operaciones reales: contratos, caja, stock, reportes, integraciones y
+        flujos que hoy usan personas y negocios concretos.
+      </p>
+
+      <div class="projects-featured">
+        <!-- Vergani -->
+        <div class="project-featured fade-in">
+          <div class="project-meta">
+            <div>
+              <div
+                class="project-client-label"
+                data-es="Cliente"
+                data-en="Client"
+              >
+                Cliente
+              </div>
+              <div class="project-client">Vergani Propiedades</div>
+            </div>
+            <div
+              class="project-type-badge"
+              data-es="Sistema de gestión inmobiliaria"
+              data-en="Real estate management system"
+            >
+              Sistema de gestión inmobiliaria
+            </div>
+            <div
+              style="font-size: 13px; color: var(--muted); line-height: 1.6"
+              data-es="Mejora de un sistema inmobiliario existente, sumando automatización para contratos, ajustes por índice, control de caja y liquidaciones mensuales a propietarios."
+              data-en="Improvement of an existing real estate management system, adding automation for contracts, indexed rent adjustments, cash control, and monthly owner payouts."
+            >
+              Mejora de un sistema inmobiliario existente, sumando
+              automatización para contratos, ajustes por índice, control de caja
+              y liquidaciones mensuales a propietarios.
+            </div>
+          </div>
+          <div class="project-detail">
+            <div
+              class="project-tagline"
+              data-es="Automatización de contratos y caja sobre un sistema inmobiliario que ya estaba en uso"
+              data-en="Automating contracts and cash workflows on top of an existing real estate system"
+            >
+              Automatización de contratos y caja sobre un sistema inmobiliario
+              que ya estaba en uso
+            </div>
+            <div
+              class="project-summary"
+              data-es="Vergani Propiedades ya utilizaba un sistema anterior, pero seguía resolviendo de forma manual una parte crítica de la operación: las actualizaciones de contratos por IPC y otros índices. Mi trabajo fue mejorar ese flujo con automatización real, integrando índices del INDEC y el BCRA, resolviendo la brecha entre los pagos del 1 al 10 y la publicación del IPC después del 15, y sumando trazabilidad en caja, saldos y liquidaciones."
+              data-en="Vergani Propiedades already had an older system in place, but one critical part of the operation was still handled manually: contract updates based on CPI and other indexes. My work focused on improving that workflow with real automation, integrating INDEC and BCRA indexes, handling the gap between payments made on days 1–10 and the CPI publication after the 15th, and adding traceability to cash, balances, and owner settlements."
+            >
+              Vergani Propiedades ya utilizaba un sistema anterior, pero seguía
+              resolviendo de forma manual una parte crítica de la operación: las
+              actualizaciones de contratos por IPC y otros índices. Mi trabajo
+              fue mejorar ese flujo con automatización real, integrando índices
+              del INDEC y el BCRA, resolviendo la brecha entre los pagos del 1
+              al 10 y la publicación del IPC después del 15, y sumando
+              trazabilidad en caja, saldos y liquidaciones.
+            </div>
+            <div class="feature-grid">
+              <div
+                class="feature-item"
+                data-es="Ajuste por IPC, ICL, UVA o índice fijo"
+                data-en="Adjustments by CPI, ICL, UVA, or fixed rate"
+              >
+                Contratos configurables (IPC, ICL, UVA, fijo)
+              </div>
+              <div
+                class="feature-item"
+                data-es="Actualización automática al confirmarse el índice"
+                data-en="Auto-update when the index is confirmed"
+              >
+                Ajuste automático al publicarse el índice
+              </div>
+              <div
+                class="feature-item"
+                data-es="Legajos digitales con historial completo"
+                data-en="Digital tenant files with full history"
+              >
+                Legajos digitales con historial completo
+              </div>
+              <div
+                class="feature-item"
+                data-es="Caja con distribución automática de comisiones"
+                data-en="Cash register with automatic commission split"
+              >
+                Control de caja con split de comisiones
+              </div>
+              <div
+                class="feature-item"
+                data-es="Pagos a cuenta: se ajustan solos al salir el IPC"
+                data-en="Advance payments that self-adjust when CPI drops"
+              >
+                Pagos a cuenta y reconciliación post-índice
+              </div>
+              <div
+                class="feature-item"
+                data-es="Liquidaciones a propietarios en PDF"
+                data-en="PDF owner settlements"
+              >
+                Liquidaciones a propietarios en PDF
+              </div>
+              <div
+                class="feature-item"
+                data-es="Reportes de vencimientos y deudores"
+                data-en="Expiry and debtor reports"
+              >
+                Reportes de vencimientos y deudores
+              </div>
+              <div
+                class="feature-item"
+                data-es="Roles diferenciados: administrador y operador"
+                data-en="User roles: admin and operator"
+              >
+                Roles de acceso: administrador y operador
+              </div>
+            </div>
+            <div class="project-stack-row">
+              <span class="stack-pill">Next.js</span>
+              <span class="stack-pill">TypeScript</span>
+              <span class="stack-pill">Supabase</span>
+              <span class="stack-pill">PostgreSQL</span>
+              <span class="stack-pill">Vercel</span>
+              <span class="stack-pill">INDEC / BCRA API</span>
+              <span class="stack-pill">PDF generation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prensadora -->
+        <div class="project-featured fade-in">
+          <div class="project-meta">
+            <div>
+              <div
+                class="project-client-label"
+                data-es="Cliente"
+                data-en="Client"
+              >
+                Cliente
+              </div>
+              <div class="project-client">Prensadora Marquez</div>
+            </div>
+            <div
+              class="project-type-badge"
+              data-es="Sistema de caja e inventario"
+              data-en="Cash &amp; inventory system"
+            >
+              Sistema de caja e inventario
+            </div>
+            <div
+              style="font-size: 13px; color: var(--muted); line-height: 1.6"
+              data-es="Sistema para una empresa que compra y vende metales: caja en pesos y dólares, control de stock en tiempo real y registro de todas las operaciones."
+              data-en="System for a metals trading company: separate cash registers in pesos and dollars, real-time stock tracking, and a full log of every transaction."
+            >
+              Sistema bi-monetario (ARS/USD) para gestión de caja, stock de
+              materiales y boletas de compra/venta para una empresa de
+              compraventa de metales.
+            </div>
+          </div>
+          <div class="project-detail">
+            <div
+              class="project-tagline"
+              data-es="Un sistema en tiempo real para caja, stock y operación diaria de una empresa metalúrgica"
+              data-en="A real-time system for managing cash, inventory, and daily operations in a metal trading business"
+            >
+              Un sistema en tiempo real para caja, stock y operación diaria de
+              una empresa metalúrgica
+            </div>
+            <div
+              class="project-summary"
+              data-es="La empresa registraba compras y ventas de metales con planillas y boletas manuales, sin visibilidad clara del stock ni del estado de la caja en pesos y dólares por separado. El sistema centraliza esa operación: cada movimiento actualiza stock y caja automáticamente, mantiene trazabilidad por cliente y material, y genera reportes exportables para la administración diaria."
+              data-en="The business relied on spreadsheets and manual records, making it difficult to track stock levels and cash flow across currencies. I built a system that centralizes operations: every transaction updates stock and cash automatically, provides real-time visibility, and generates reports in seconds. The result is a clear, reliable source of truth for daily operations."
+            >
+              La empresa registraba compras y ventas de metales con planillas y
+              boletas manuales, sin visibilidad clara del stock ni del estado de
+              la caja en pesos y dólares por separado. El sistema centraliza esa
+              operación: cada movimiento actualiza stock y caja automáticamente,
+              mantiene trazabilidad por cliente y material, y genera reportes
+              exportables para la administración diaria.
+            </div>
+            <div class="feature-grid">
+              <div
+                class="feature-item"
+                data-es="Caja bi-monetaria ARS / USD"
+                data-en="Dual-currency cash register ARS / USD"
+              >
+                Caja bi-monetaria ARS / USD
+              </div>
+              <div
+                class="feature-item"
+                data-es="Boletas de compra y venta con lógica de stock"
+                data-en="Purchase and sale receipts with stock logic"
+              >
+                Boletas de ingreso y egreso de material
+              </div>
+              <div
+                class="feature-item"
+                data-es="Control automático de stock en tiempo real"
+                data-en="Real-time automatic stock control"
+              >
+                Control automático de stock en tiempo real
+              </div>
+              <div
+                class="feature-item"
+                data-es="Alertas de stock bajo por material"
+                data-en="Low-stock alerts per material"
+              >
+                Alertas de stock bajo por material
+              </div>
+              <div
+                class="feature-item"
+                data-es="Clientes con cuenta corriente integrada"
+                data-en="Clients with built-in running account"
+              >
+                Gestión de clientes con cuenta corriente
+              </div>
+              <div
+                class="feature-item"
+                data-es="Porcentaje de comisión por cliente"
+                data-en="Per-client commission percentage"
+              >
+                Comisiones para clientes especiales
+              </div>
+              <div
+                class="feature-item"
+                data-es="Reportes diarios exportables a CSV/PDF"
+                data-en="Daily reports exportable to CSV/PDF"
+              >
+                Reportes diarios exportables a CSV/PDF
+              </div>
+              <div
+                class="feature-item"
+                data-es="Dashboard con transacciones recientes"
+                data-en="Dashboard with recent transactions"
+              >
+                Dashboard con transacciones recientes
+              </div>
+            </div>
+            <div
+              class="project-proof"
+              data-es="En uso real"
+              data-en="In real use"
+            >
+              <span class="project-proof-dot"></span><span>In real use</span>
+            </div>
+            <div class="project-gallery">
+              <div class="project-shot">
+                <img
+                  src="img/panel.png"
+                  alt="Dashboard de Prensadora Marquez mostrando caja, stock, alertas y transacciones recientes"
+                />
+                <div class="project-shot-caption">
+                  <div>
+                    <div
+                      class="project-shot-title"
+                      data-es="Dashboard operativo"
+                      data-en="Operations dashboard"
+                    >
+                      Dashboard operativo
+                    </div>
+                    <div
+                      class="project-shot-desc"
+                      data-es="Caja ARS/USD, alertas de stock, transacciones recientes y resumen diario en una sola vista."
+                      data-en="ARS/USD cash flow, stock alerts, recent transactions, and daily summary in a single view."
+                    >
+                      Caja ARS/USD, alertas de stock, transacciones recientes y
+                      resumen diario en una sola vista.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-shot">
+                <img
+                  src="img/reportes.png"
+                  alt="Módulo de reportes de Prensadora Marquez con filtros por fecha y exportación CSV, Excel y PDF"
+                />
+                <div class="project-shot-caption">
+                  <div>
+                    <div
+                      class="project-shot-title"
+                      data-es="Reportes y exportación"
+                      data-en="Reporting & export"
+                    >
+                      Reportes y exportación
+                    </div>
+                    <div
+                      class="project-shot-desc"
+                      data-es="Filtros por período y moneda, con exportación directa a CSV, Excel y PDF."
+                      data-en="Filtering by date range and currency, with direct export to CSV, Excel, and PDF."
+                    >
+                      Filtros por período y moneda, con exportación directa a
+                      CSV, Excel y PDF.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="project-stack-row">
+              <span class="stack-pill">Next.js</span>
+              <span class="stack-pill">TypeScript</span>
+              <span class="stack-pill">Supabase</span>
+              <span class="stack-pill">PostgreSQL</span>
+              <span class="stack-pill">Vercel</span>
+              <span class="stack-pill">Ant Design</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Minor projects -->
+      <div class="projects-grid-minor">
+        <div class="project-minor fade-in">
+          <div class="project-minor-icon">&#11041;</div>
+          <div
+            class="project-minor-name"
+            data-es="Extensión de Chrome — Fetcher"
+            data-en="Chrome Extension — Fetcher"
+          >
+            Extensión de Chrome — Fetcher
+          </div>
+          <div
+            class="project-minor-desc"
+            data-es="Tomé un prototipo interno y lo convertí en un producto publicado en Chrome Web Store, con una arquitectura side-panel diseñada para integrarse en el flujo de trabajo diario."
+            data-en="Took an internal prototype and turned it into a published Chrome Web Store product, with a side-panel architecture designed to fit naturally into the day-to-day workflow."
+          >
+            Llevé un prototipo a un producto listo para producción con
+            arquitectura side-panel. Publicado en Chrome Web Store.
+          </div>
+          <div
+            class="project-stack-row"
+            style="padding-top: 0.5rem; border-top: none"
+          >
+            <span class="stack-pill">React</span
+            ><span class="stack-pill">WXT</span
+            ><span class="stack-pill">Vite</span
+            ><span class="stack-pill">TypeScript</span>
+          </div>
+        </div>
+        <div class="project-minor fade-in">
+          <div class="project-minor-icon">&#9635;</div>
+          <div
+            class="project-minor-name"
+            data-es="Librería interna de componentes"
+            data-en="Internal component library"
+          >
+            Librería interna de componentes
+          </div>
+          <div
+            class="project-minor-desc"
+            data-es="Librería de componentes React usada en todas las apps de Fetcher. También migré el build de Rollup a Vite, lo que redujo considerablemente los tiempos de compilación."
+            data-en="React component library used across all of Fetcher's apps. I also migrated the build from Rollup to Vite, significantly cutting down build times."
+          >
+            Sistema de componentes React compartido entre múltiples aplicaciones
+            en producción en Fetcher. Migración de Rollup a Vite.
+          </div>
+          <div
+            class="project-stack-row"
+            style="padding-top: 0.5rem; border-top: none"
+          >
+            <span class="stack-pill">React</span
+            ><span class="stack-pill">Ant Design v5</span
+            ><span class="stack-pill">Vite</span>
+          </div>
+        </div>
+        <div class="project-minor fade-in">
+          <div class="project-minor-icon">&#9678;</div>
+          <div
+            class="project-minor-name"
+            data-es="PWA con microservicios"
+            data-en="PWA with microservices"
+          >
+            PWA con microservicios
+          </div>
+          <div
+            class="project-minor-desc"
+            data-es="PWA desarrollada en equipo con arquitectura de microservicios, manejo de estado con Redux y buenas prácticas de diseño orientado a objetos."
+            data-en="PWA built with a microservices architecture, Redux state management, and object-oriented design best practices."
+          >
+            Progressive Web App de alto rendimiento con Redux, arquitectura de
+            microservicios y principios SOLID.
+          </div>
+          <div
+            class="project-stack-row"
+            style="padding-top: 0.5rem; border-top: none"
+          >
+            <span class="stack-pill">React</span
+            ><span class="stack-pill">Redux</span
+            ><span class="stack-pill">Material UI</span
+            ><span class="stack-pill">.NET</span>
+          </div>
+        </div>
+      </div>
+      <p
+        style="
+          margin-top: 1.5rem;
+          font-family: var(--fm);
+          font-size: 12px;
+          color: var(--muted);
+        "
+      >
+        <span data-es="Más proyectos" data-en="More projects"
+          >Más proyectos</span
+        >
+        &rarr;
+        <a
+          href="https://github.com/gabuvi7"
+          target="_blank"
+          style="color: var(--accent); text-decoration: none"
+          >github.com/gabuvi7</a
+        >
+      </p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section
+      id="experiencia"
+      style="
+        background: var(--bg-card);
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+        max-width: 100%;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      "
+    >
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 4rem">
+        <div class="section-label" data-es="Trayectoria" data-en="Career">
+          Trayectoria
+        </div>
+        <h2 class="section-title" data-es="Experiencia" data-en="Experience">
+          Experiencia
+        </h2>
+        <div class="exp-grid">
+          <div class="exp-item fade-in">
+            <div class="exp-left">
+              <span class="exp-period"
+                >Jul 2022 &mdash;
+                <span data-es="Presente" data-en="Present">Presente</span></span
+              >
+              <span class="exp-company">Fetcher</span>
+              <span class="exp-badge" data-es="Remoto" data-en="Remote"
+                >Remoto</span
+              >
+            </div>
+            <div class="exp-right">
+              <div class="exp-role">
+                Software Engineer II
+                <span
+                  style="
+                    font-family: var(--fm);
+                    font-size: 11px;
+                    color: var(--muted);
+                    font-weight: 400;
+                  "
+                  >· Aug 2023 – Present</span
+                >
+              </div>
+              <div
+                style="
+                  font-family: var(--fm);
+                  font-size: 11px;
+                  color: var(--muted);
+                  margin-bottom: 0.75rem;
+                "
+              >
+                Previously: Software Engineer · Jul 2022 – Aug 2023
+              </div>
+              <ul class="exp-highlights">
+                <li
+                  data-es="Migré la UI heredada a una arquitectura moderna con React, TypeScript y Ant Design v5."
+                  data-en="Led the migration of a legacy UI to a modern stack with React, TypeScript, and Ant Design v5."
+                >
+                  Migración de UI legacy a arquitectura moderna con React,
+                  TypeScript y Ant Design v5.
+                </li>
+                <li
+                  data-es="Reduje los tiempos de build migrando el bundler de Rollup a Vite."
+                  data-en="Cut build times significantly by switching the bundler from Rollup to Vite."
+                >
+                  Mejora de build performance migrando de Rollup a Vite.
+                </li>
+                <li
+                  data-es="Construí y mantuve la librería interna de componentes que usan todas las aplicaciones del producto."
+                  data-en="Built and maintained the internal component library used across all product applications."
+                >
+                  Construcción y mantenimiento de librería interna de
+                  componentes compartida entre múltiples aplicaciones.
+                </li>
+                <li
+                  data-es="Desarrollé una extensión de Chrome con WXT, React y Vite, llevándola desde prototipo hasta su publicación en Chrome Web Store."
+                  data-en="Built a Chrome extension with WXT, React, and Vite, taking it from prototype to Chrome Web Store release."
+                >
+                  Desarrollo de extensión de Chrome con WXT, React y Vite —
+                  publicada en Chrome Web Store.
+                </li>
+                <li
+                  data-es="Diseñé una arquitectura side-panel que mejoró notablemente la usabilidad de la extensión."
+                  data-en="Designed a side-panel architecture that significantly improved the extension's usability."
+                >
+                  Diseño e implementación de arquitectura side-panel para
+                  mejorar flujos de trabajo.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="exp-item fade-in">
+            <div class="exp-left">
+              <span class="exp-period">Nov 2020 &mdash; Jul 2022</span>
+              <span class="exp-company">Algeiba S.A.</span>
+              <span class="exp-badge">Argentina</span>
+            </div>
+            <div class="exp-right">
+              <div class="exp-role">Software Developer</div>
+              <ul class="exp-highlights">
+                <li
+                  data-es="Desarrollé aplicaciones con Angular 10 y .NET Core 3.1, incluyendo soluciones de chatbot con Bot Framework, LUIS y QnA Maker."
+                  data-en="Built applications with Angular 10 and .NET Core 3.1, including chatbot solutions using Bot Framework, LUIS, and QnA Maker."
+                >
+                  Desarrollo de aplicaciones frontend con React y Angular.
+                </li>
+                <li
+                  data-es="Desarrollé servicios backend con .NET Core 3.1, .NET 5 y .NET 6."
+                  data-en="Developed backend services with .NET Core 3.1, .NET 5, and .NET 6."
+                >
+                  Servicios backend con .NET Core 3.1, .NET 5/6.
+                </li>
+                <li
+                  data-es="Trabajé en arquitecturas de microservicios dentro de equipos ágiles con Scrum, usando Azure DevOps para gestión del backlog y Git para control de versiones."
+                  data-en="Worked on microservices architectures in agile Scrum teams, using Azure DevOps for backlog management and Git for version control."
+                >
+                  Arquitectura de microservicios con principios SOLID en equipos
+                  ágiles.
+                </li>
+                <li
+                  data-es="Desarrollé una PWA con React, Redux y Redux-Saga en el frontend, y .NET 5 en el backend."
+                  data-en="Built a PWA with React, Redux, and Redux-Saga on the frontend, backed by .NET 5 on the server."
+                >
+                  PWA con React, Redux y Material UI.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="exp-item fade-in">
+            <div class="exp-left">
+              <span class="exp-period">2018 &mdash; Oct 2020</span>
+              <span class="exp-company">Sarsy SRL</span>
+              <span class="exp-badge">Argentina</span>
+            </div>
+            <div class="exp-right">
+              <div class="exp-role">Software Developer</div>
+              <ul class="exp-highlights">
+                <li
+                  data-es="Desarrollé aplicaciones web y de escritorio con .NET Framework."
+                  data-en="Built web and desktop applications with .NET Framework."
+                >
+                  Aplicaciones web y de escritorio con .NET Framework.
+                </li>
+                <li
+                  data-es="Trabajé directamente con los clientes desde el relevamiento hasta la entrega, tomando decisiones técnicas de forma autónoma."
+                  data-en="Worked directly with clients from requirements to delivery, making technical decisions independently."
+                >
+                  Trabajo directo con clientes: relevamiento de requisitos y
+                  entrega de soluciones a medida.
+                </li>
+                <li
+                  data-es="Diseñé y administré bases de datos en SQL Server, incluyendo modelado de datos y tareas de procesamiento."
+                  data-en="Designed and administered SQL Server databases, including data modeling and processing tasks."
+                >
+                  Gestión de entornos productivos y operaciones en SQL Server.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-label">Stack</div>
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-layout">
+        <div class="skill-group fade-in">
+          <div class="skill-group-label">Frontend</div>
+          <div class="skill-tags">
+            <span class="skill-tag featured">React</span
+            ><span class="skill-tag featured">TypeScript</span
+            ><span class="skill-tag featured">Next.js</span>
+            <span class="skill-tag">JavaScript</span
+            ><span class="skill-tag">HTML / CSS</span
+            ><span class="skill-tag">Ant Design</span>
+            <span class="skill-tag">Material UI</span
+            ><span class="skill-tag">Emotion</span>
+          </div>
+        </div>
+        <div class="skill-group fade-in">
+          <div
+            class="skill-group-label"
+            data-es="Backend y base de datos"
+            data-en="Backend &amp; database"
+          >
+            Backend y base de datos
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag featured">Supabase</span
+            ><span class="skill-tag featured">PostgreSQL</span>
+            <span class="skill-tag">Node.js</span
+            ><span class="skill-tag">.NET</span
+            ><span class="skill-tag">REST APIs</span
+            ><span class="skill-tag">SQL Server</span>
+          </div>
+        </div>
+        <div class="skill-group fade-in">
+          <div
+            class="skill-group-label"
+            data-es="Build, infra y deploy"
+            data-en="Build, infra &amp; deploy"
+          >
+            Build, infra y deploy
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag featured">Vercel</span
+            ><span class="skill-tag featured">Vite</span>
+            <span class="skill-tag">Webpack</span
+            ><span class="skill-tag">Babel</span
+            ><span class="skill-tag">WXT</span
+            ><span class="skill-tag">Git</span>
+          </div>
+        </div>
+        <div class="skill-group fade-in">
+          <div
+            class="skill-group-label"
+            data-es="Testing y metodología"
+            data-en="Testing &amp; methodology"
+          >
+            Testing y metodología
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag featured">Cypress</span
+            ><span class="skill-tag">Jest</span>
+            <span class="skill-tag">React Testing Library</span
+            ><span class="skill-tag">Agile / Scrum</span
+            ><span class="skill-tag">Design Systems</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section
+      style="
+        background: var(--bg-card);
+        max-width: 100%;
+        border-top: 1px solid var(--border);
+      "
+    >
+      <div style="max-width: 1200px; margin: 0 auto; padding: 3rem 4rem">
+        <div
+          class="section-label"
+          data-es="Certificaciones"
+          data-en="Certifications"
+        >
+          Certifications
+        </div>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+          "
+        >
+          <div
+            style="
+              background: var(--bg);
+              padding: 1.5rem 2rem;
+              display: flex;
+              flex-direction: column;
+              gap: 0.4rem;
+            "
+          >
+            <div
+              style="font-family: var(--fh); font-size: 1rem; font-weight: 700"
+            >
+              Scrum Fundamentals Certified
+            </div>
+            <div
+              style="
+                font-family: var(--fm);
+                font-size: 11px;
+                color: var(--muted);
+                letter-spacing: 0.06em;
+              "
+            >
+              SCRUMstudy · Nov 2020 · ID 815175
+            </div>
+          </div>
+          <div
+            style="
+              background: var(--bg);
+              padding: 1.5rem 2rem;
+              display: flex;
+              flex-direction: column;
+              gap: 0.4rem;
+            "
+          >
+            <div
+              style="font-family: var(--fh); font-size: 1rem; font-weight: 700"
+            >
+              Six Sigma Yellow Belt
+            </div>
+            <div
+              style="
+                font-family: var(--fm);
+                font-size: 11px;
+                color: var(--muted);
+                letter-spacing: 0.06em;
+              "
+            >
+              6sigmastudy · Nov 2020 · ID 737033
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="contacto"
+      style="
+        background: var(--bg-card);
+        max-width: 100%;
+        border-top: 1px solid var(--border);
+      "
+    >
+      <div style="max-width: 1200px; margin: 0 auto; padding: 6rem 4rem">
+        <div class="section-label" data-es="Contacto" data-en="Contact">
+          Contacto
+        </div>
+        <h2
+          class="section-title"
+          data-es="Si hoy lo resolvés con planillas, lo podemos convertir en software"
+          data-en="If you run it with spreadsheets today, we can turn it into software"
+        >
+          Si hoy lo resolvés con planillas, lo podemos convertir en software
+        </h2>
+        <div class="contact-grid">
+          <div class="contact-left">
+            <p
+              data-es="Trabajo con negocios que necesitan ordenar operaciones, automatizar procesos y dejar atrás planillas o herramientas que ya no alcanzan. También estoy abierto a oportunidades remotas de producto donde pueda aportar desde frontend, arquitectura y sistemas internos."
+              data-en="I work with businesses that need to organize operations, automate workflows, and move beyond spreadsheets or tools that no longer scale. I'm also open to remote product opportunities where I can contribute across frontend, architecture, and internal systems."
+            >
+              Trabajo con negocios que necesitan ordenar operaciones,
+              automatizar procesos y dejar atrás planillas o herramientas que ya
+              no alcanzan. También estoy abierto a oportunidades remotas de
+              producto donde pueda aportar desde frontend, arquitectura y
+              sistemas internos.
+            </p>
+            <div class="contact-links">
+              <a href="mailto:uviedo_gabriel@hotmail.com" class="contact-link">
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="m22 7-10 7L2 7" />
+                </svg>
+                uviedo_gabriel@hotmail.com
+              </a>
+              <a
+                href="https://www.linkedin.com/in/uviedo-gabriel/"
+                target="_blank"
+                rel="noopener"
+                class="contact-link"
+              >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  />
+                  <rect width="4" height="12" x="2" y="9" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+                linkedin.com/in/uviedo-gabriel
+              </a>
+              <a
+                href="https://github.com/gabuvi7"
+                target="_blank"
+                rel="noopener"
+                class="contact-link"
+              >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+                  />
+                  <path d="M9 18c-4.51 2-5-2-7-2" />
+                </svg>
+                github.com/gabuvi7
+              </a>
+            </div>
+          </div>
+          <div class="contact-right">
+            <div class="avail-badge">
+              <div class="avail-dot"></div>
+              <span
+                data-es="Disponible para proyectos"
+                data-en="Available for projects"
+                >Disponible para proyectos</span
+              >
+            </div>
+            <h3>gusolutions.com.ar</h3>
+            <p
+              data-es="Sistemas hechos a medida para negocios reales, con acompañamiento de principio a fin. Desde el diseño del flujo hasta el deploy en producción."
+              data-en="Custom-built systems for real businesses, with end-to-end ownership. From workflow design to production deployment."
+            >
+              Sistemas hechos a medida para negocios reales, con acompañamiento
+              de principio a fin. Desde el diseño del flujo hasta el deploy en
+              producción.
+            </p>
+            <span class="url-highlight">&rarr; gusolutions.com.ar</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Gabriel Oscar Uviedo — GU Solutions</p>
+      <p>Buenos Aires, Argentina</p>
+    </footer>
+
+    <script defer src="js/main.js"></script>
+  </body>
+</html>
