@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  
-  <circle cx="32" cy="32" r="32" fill="oklch(0.52 0.10 150)"></circle>
-  <circle cx="32" cy="32" r="28" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="2.2"></circle>
-  <text x="32" y="42" text-anchor="middle" font-family="&#39;Space Grotesk&#39;, system-ui, sans-serif" font-weight="700" font-size="30" letter-spacing="-1.8" fill="#ffffff">GU</text>
+  <rect width="64" height="64" rx="12" fill="#0c0c0d"></rect>
+  <text x="32" y="42" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Helvetica, Arial, sans-serif" font-weight="700" font-size="26" letter-spacing="-1.2" fill="#ffffff">
+    <tspan fill="#2d7a4f" font-weight="400">&lt;/</tspan>GU<tspan fill="#2d7a4f" font-weight="400">&gt;</tspan>
+  </text>
 </svg>
