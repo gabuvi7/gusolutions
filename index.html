@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Turnstile: site key pública. Ver https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/ -->
+    <meta name="turnstile-site-key" content="" />
     <title>Gabriel Uviedo — GU Solutions · Sistemas a medida</title>
+    <link rel="preconnect" href="https://challenges.cloudflare.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -1508,20 +1511,40 @@
             ></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary">
+          <div class="hp-field" aria-hidden="true">
+            <label for="contact-company">Company</label>
+            <input
+              type="text"
+              id="contact-company"
+              name="company"
+              tabindex="-1"
+              autocomplete="off"
+              value=""
+            />
+          </div>
+
+          <div id="turnstile-widget" class="turnstile-wrap"></div>
+
+          <button type="submit" class="btn btn-primary" id="contact-submit">
             <span data-es="Enviar mensaje" data-en="Send message"
               >Enviar mensaje</span
             >
             <span aria-hidden="true">→</span>
           </button>
           <div
+            id="form-error"
+            class="form-error"
+            style="display: none"
+            role="alert"
+          ></div>
+          <div
             id="form-success"
             class="form-success"
             style="display: none"
-            data-es="✓ Abriendo tu cliente de correo…"
-            data-en="✓ Opening your mail client…"
+            data-es="✓ Mensaje enviado. Te respondo pronto."
+            data-en="✓ Message sent. I'll get back to you soon."
           >
-            ✓ Abriendo tu cliente de correo…
+            ✓ Mensaje enviado. Te respondo pronto.
           </div>
         </form>
       </div>
@@ -1559,6 +1582,11 @@
       data-cfasync="false"
       src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
     ></script>
-    <script src="js/main.js"></script>
+    <!-- Turnstile: explicit rendering (?render=explicit) — https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/ -->
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+      defer
+    ></script>
+    <script src="js/main.js" defer></script>
   </body>
 </html>

@@ -289,6 +289,115 @@ function announceEditMode() {
 }
 
 /* ---------- contact form ---------- */
+function contactIsValidEmail(email) {
+  const s = String(email).trim();
+  if (s.length < 5 || s.length > 254) return false;
+  const at = s.lastIndexOf("@");
+  if (at < 1 || at === s.length - 1) return false;
+  const local = s.slice(0, at);
+  const domain = s.slice(at + 1);
+  if (local.length > 64 || domain.length > 253) return false;
+  if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+$/.test(local)) return false;
+  if (domain.startsWith(".") || domain.endsWith(".") || domain.includes(".."))
+    return false;
+  const labels = domain.split(".");
+  if (labels.length < 2) return false;
+  for (const label of labels) {
+    if (label.length < 1 || label.length > 63) return false;
+    if (!/^[a-zA-Z0-9-]+$/.test(label)) return false;
+    if (label.startsWith("-") || label.endsWith("-")) return false;
+  }
+  return true;
+}
+
+const CONTACT_ERR = {
+  invalid_name: {
+    es: "Indicá tu nombre (hasta 200 caracteres).",
+    en: "Please enter your name (up to 200 characters).",
+  },
+  invalid_email: {
+    es: "El email no parece válido. Revisá el formato.",
+    en: "That email does not look valid. Check the format.",
+  },
+  invalid_message: {
+    es: "Escribí un mensaje (máx. 8000 caracteres).",
+    en: "Please write a message (max 8000 characters).",
+  },
+  turnstile_missing: {
+    es: "Completá la verificación anti‑bots arriba del botón.",
+    en: "Complete the anti‑bot check above the button.",
+  },
+  turnstile_failed: {
+    es: "La verificación anti‑bots falló. Recargá la página e intentá de nuevo.",
+    en: "Anti‑bot verification failed. Reload and try again.",
+  },
+  not_configured: {
+    es: "El envío no está configurado en el servidor. Escribime por email o LinkedIn.",
+    en: "Sending is not configured on the server. Reach me by email or LinkedIn.",
+  },
+  send_failed: {
+    es: "No se pudo enviar ahora. Probá de nuevo más tarde.",
+    en: "Could not send right now. Please try again later.",
+  },
+  network: {
+    es: "Sin conexión o error de red. Probá de nuevo.",
+    en: "Network error. Please try again.",
+  },
+  generic: {
+    es: "Algo salió mal. Probá de nuevo.",
+    en: "Something went wrong. Please try again.",
+  },
+  form_unavailable: {
+    es: "El formulario de envío no está disponible en este momento.",
+    en: "The contact form is not available right now.",
+  },
+};
+
+function contactErrorText(code) {
+  const row = CONTACT_ERR[code] || CONTACT_ERR.generic;
+  return row[currentLang] || row.es;
+}
+
+/** Misma URL que exige Cloudflare; no proxy ni cache del script. */
+const TURNSTILE_SCRIPT =
+  "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+
+function loadTurnstileScript() {
+  if (window.turnstile) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const s = document.createElement("script");
+    s.src = TURNSTILE_SCRIPT;
+    s.defer = true;
+    s.onload = () => resolve();
+    s.onerror = () => reject(new Error("turnstile_script"));
+    document.head.appendChild(s);
+  });
+}
+
+function mountTurnstileExplicit(mountEl, sitekey, onReady) {
+  if (!mountEl || !sitekey) return;
+  const render = () => {
+    if (!window.turnstile) return;
+    const id = window.turnstile.render(mountEl, {
+      sitekey,
+      theme: "auto",
+    });
+    if (typeof onReady === "function") onReady(id);
+  };
+  if (window.turnstile?.ready) {
+    window.turnstile.ready(render);
+  } else if (window.turnstile) {
+    render();
+  } else {
+    loadTurnstileScript()
+      .then(() => {
+        if (window.turnstile?.ready) window.turnstile.ready(render);
+        else render();
+      })
+      .catch(() => {});
+  }
+}
+
 function initContactForm() {
   const chips = document.querySelectorAll(".budget-chips .chip");
   chips.forEach((c) => {
@@ -297,18 +406,153 @@ function initContactForm() {
       c.classList.add("active");
     });
   });
+
   const form = document.getElementById("contact-form");
-  form?.addEventListener("submit", (e) => {
+  const errEl = document.getElementById("form-error");
+  const okEl = document.getElementById("form-success");
+  const submitBtn = document.getElementById("contact-submit");
+  const turnstileMount = document.getElementById("turnstile-widget");
+  const metaKey = document
+    .querySelector('meta[name="turnstile-site-key"]')
+    ?.getAttribute("content")
+    ?.trim();
+
+  let turnstileWidgetId = null;
+  if (metaKey && turnstileMount) {
+    mountTurnstileExplicit(turnstileMount, metaKey, (id) => {
+      turnstileWidgetId = id;
+    });
+  }
+
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
+    if (!form) return;
+
+    if (!metaKey) {
+      if (errEl) {
+        errEl.textContent = contactErrorText("form_unavailable");
+        errEl.style.display = "block";
+      }
+      return;
+    }
+
+    const nameEl = form.querySelector("#name");
+    const emailEl = form.querySelector("#email");
+    const msgEl = form.querySelector("#message");
+    nameEl?.classList.remove("field-invalid");
+    emailEl?.classList.remove("field-invalid");
+    msgEl?.classList.remove("field-invalid");
+    if (errEl) {
+      errEl.style.display = "none";
+      errEl.textContent = "";
+    }
+    if (okEl) okEl.style.display = "none";
+
     const data = new FormData(form);
-    const name = data.get("name") || "";
-    const email = data.get("email") || "";
-    const msg = data.get("message") || "";
+    const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const message = String(data.get("message") || "").trim();
+    const hp = String(data.get("company") || "").trim();
     const budget =
       document.querySelector(".budget-chips .chip.active")?.dataset.value || "";
-    const body = `Nombre: ${name}%0D%0AEmail: ${email}%0D%0APresupuesto: ${budget}%0D%0A%0D%0A${msg}`;
-    window.location.href = `mailto:uviedo_gabriel@hotmail.com?subject=Proyecto%20%E2%80%94%20GU%20Solutions&body=${body}`;
-    const s = document.getElementById("form-success");
-    if (s) s.style.display = "block";
+
+    let clientCode = null;
+    if (!name || name.length > 200) clientCode = "invalid_name";
+    else if (!contactIsValidEmail(email)) clientCode = "invalid_email";
+    else if (!message || message.length > 8000) clientCode = "invalid_message";
+
+    if (clientCode) {
+      if (errEl) {
+        errEl.textContent = contactErrorText(clientCode);
+        errEl.style.display = "block";
+      }
+      if (clientCode === "invalid_name") nameEl?.classList.add("field-invalid");
+      if (clientCode === "invalid_email") emailEl?.classList.add("field-invalid");
+      if (clientCode === "invalid_message") msgEl?.classList.add("field-invalid");
+      return;
+    }
+
+    let token = "";
+    if (turnstileWidgetId != null && window.turnstile) {
+      token = window.turnstile.getResponse(turnstileWidgetId) || "";
+    }
+    if (metaKey && !token) {
+      if (errEl) {
+        errEl.textContent = contactErrorText("turnstile_missing");
+        errEl.style.display = "block";
+      }
+      return;
+    }
+
+    submitBtn?.setAttribute("disabled", "disabled");
+    submitBtn?.setAttribute("aria-busy", "true");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          budget,
+          hp,
+          turnstileToken: token,
+        }),
+      });
+      let body = {};
+      try {
+        body = await res.json();
+      } catch {
+        body = {};
+      }
+
+      if (res.ok && body.ok) {
+        form.reset();
+        chips.forEach((x) => x.classList.remove("active"));
+        document
+          .querySelector('.budget-chips .chip[data-value="3-10k"]')
+          ?.classList.add("active");
+        if (okEl) {
+          const t = okEl.getAttribute("data-" + currentLang);
+          if (t) okEl.textContent = t;
+          okEl.style.display = "block";
+        }
+        if (turnstileWidgetId != null && window.turnstile) {
+          window.turnstile.reset(turnstileWidgetId);
+        }
+      } else {
+        const code =
+          body.error === "invalid_email" || body.error === "invalid_name"
+            ? body.error
+            : body.error === "invalid_message"
+              ? "invalid_message"
+              : body.error === "turnstile_failed"
+                ? "turnstile_failed"
+                : body.error === "not_configured"
+                  ? "not_configured"
+                  : body.error === "send_failed"
+                    ? "send_failed"
+                    : "generic";
+        if (errEl) {
+          errEl.textContent = contactErrorText(code);
+          errEl.style.display = "block";
+        }
+        if (code === "invalid_email") emailEl?.classList.add("field-invalid");
+        if (code === "invalid_name") nameEl?.classList.add("field-invalid");
+        if (code === "invalid_message") msgEl?.classList.add("field-invalid");
+        if (turnstileWidgetId != null && window.turnstile) {
+          window.turnstile.reset(turnstileWidgetId);
+        }
+      }
+    } catch {
+      if (errEl) {
+        errEl.textContent = contactErrorText("network");
+        errEl.style.display = "block";
+      }
+    } finally {
+      submitBtn?.removeAttribute("disabled");
+      submitBtn?.removeAttribute("aria-busy");
+    }
   });
 }
