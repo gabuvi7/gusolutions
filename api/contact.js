@@ -4,8 +4,10 @@
  * Environment variables (Vercel → Project → Settings → Environment Variables):
  *   RESEND_API_KEY    — https://resend.com
  *   TURNSTILE_SECRET  — https://dash.cloudflare.com → Turnstile (funciona en cualquier host)
- *   CONTACT_TO        — casilla que recibe los mensajes
- *   MAIL_FROM         — remitente verificado en Resend, ej. "GU Solutions <onboarding@resend.dev>"
+ *   CONTACT_TO        — casilla que recibe los mensajes del formulario
+ *   MAIL_FROM         — remitente en Resend. Con onboarding@resend.dev, CONTACT_TO debe ser el
+ *                       mismo email que tu cuenta en resend.com; para otros destinatarios verificá
+ *                       un dominio en resend.com/domains y usá un from de ese dominio.
  */
 
 const TURNSTILE_VERIFY = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
@@ -98,10 +100,10 @@ module.exports = async (req, res) => {
     return res.status(405).json({ ok: false, error: "method_not_allowed" });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const turnstileSecret = process.env.TURNSTILE_SECRET;
-  const contactTo = process.env.CONTACT_TO;
-  const mailFrom = process.env.MAIL_FROM;
+  const apiKey = String(process.env.RESEND_API_KEY || "").trim();
+  const turnstileSecret = String(process.env.TURNSTILE_SECRET || "").trim();
+  const contactTo = String(process.env.CONTACT_TO || "").trim();
+  const mailFrom = String(process.env.MAIL_FROM || "").trim();
 
   if (!apiKey || !turnstileSecret || !contactTo || !mailFrom) {
     return res.status(503).json({ ok: false, error: "not_configured" });
@@ -169,7 +171,21 @@ module.exports = async (req, res) => {
 
   if (!r.ok) {
     const errText = await r.text();
-    console.error("Resend error", r.status, errText);
+    let resendHint = "";
+    try {
+      const j = JSON.parse(errText);
+      if (j && typeof j.message === "string") resendHint = j.message;
+      else if (Array.isArray(j?.errors) && j.errors[0]?.message) {
+        resendHint = j.errors.map((e) => e.message).join("; ");
+      }
+    } catch {
+      /* body no es JSON */
+    }
+    console.error(
+      "Resend error",
+      r.status,
+      resendHint || errText.slice(0, 500)
+    );
     return res.status(502).json({ ok: false, error: "send_failed" });
   }
 
