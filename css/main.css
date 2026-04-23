@@ -993,8 +993,7 @@ section.full > .inner {
     ),
     var(--card);
 }
-.service-card.featured::after {
-  content: "RECOMENDADO";
+.service-card.featured .service-feature-badge {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -1005,6 +1004,8 @@ section.full > .inner {
   font-size: 9.5px;
   letter-spacing: 0.12em;
   border-radius: 999px;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 .service-icon {
   width: 38px;
