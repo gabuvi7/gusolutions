@@ -367,7 +367,7 @@ function loadTurnstileScript() {
   return new Promise((resolve, reject) => {
     const s = document.createElement("script");
     s.src = TURNSTILE_SCRIPT;
-    s.defer = true;
+    s.async = false;
     s.onload = () => resolve();
     s.onerror = () => reject(new Error("turnstile_script"));
     document.head.appendChild(s);
@@ -384,18 +384,15 @@ function mountTurnstileExplicit(mountEl, sitekey, onReady) {
     });
     if (typeof onReady === "function") onReady(id);
   };
-  if (window.turnstile?.ready) {
-    window.turnstile.ready(render);
-  } else if (window.turnstile) {
+
+  if (window.turnstile) {
     render();
-  } else {
-    loadTurnstileScript()
-      .then(() => {
-        if (window.turnstile?.ready) window.turnstile.ready(render);
-        else render();
-      })
-      .catch(() => {});
+    return;
   }
+
+  loadTurnstileScript()
+    .then(render)
+    .catch(() => {});
 }
 
 function initContactForm() {
@@ -467,8 +464,10 @@ function initContactForm() {
         errEl.style.display = "block";
       }
       if (clientCode === "invalid_name") nameEl?.classList.add("field-invalid");
-      if (clientCode === "invalid_email") emailEl?.classList.add("field-invalid");
-      if (clientCode === "invalid_message") msgEl?.classList.add("field-invalid");
+      if (clientCode === "invalid_email")
+        emailEl?.classList.add("field-invalid");
+      if (clientCode === "invalid_message")
+        msgEl?.classList.add("field-invalid");
       return;
     }
 
