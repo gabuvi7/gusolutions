@@ -41,7 +41,7 @@ function applyTweaks() {
 applyTweaks();
 
 /* ---------- i18n ---------- */
-let currentLang = localStorage.getItem("gu_lang") || "es";
+let currentLang = localStorage.getItem("gu_lang") || "en";
 
 function setLang(lang) {
   currentLang = lang;
@@ -57,6 +57,10 @@ function setLang(lang) {
   document.querySelectorAll("[data-es]").forEach((el) => {
     const txt = el.getAttribute("data-" + lang);
     if (txt !== null) el.innerHTML = txt;
+  });
+  document.querySelectorAll("[data-es-placeholder]").forEach((el) => {
+    const ph = el.getAttribute("data-" + lang + "-placeholder");
+    if (ph != null && "placeholder" in el) el.placeholder = ph;
   });
 }
 window.setLang = setLang;
