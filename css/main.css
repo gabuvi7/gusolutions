@@ -352,6 +352,16 @@ section.full > .inner {
   border-color: var(--accent);
   color: var(--accent);
 }
+.nav-pill-client {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+.nav-pill-client:hover {
+  background: color-mix(in oklab, var(--accent) 84%, var(--fg));
+  border-color: color-mix(in oklab, var(--accent) 84%, var(--fg));
+  color: var(--on-accent);
+}
 .lang-toggle {
   display: flex;
   border: 1px solid var(--border);
@@ -1749,6 +1759,16 @@ section.full > .inner {
   }
   .nav-links {
     display: none;
+  }
+  .nav-right {
+    gap: 0.65rem;
+  }
+  .nav-pill-book {
+    display: none;
+  }
+  .nav-pill {
+    padding: 0.42rem 0.7rem;
+    font-size: 10px;
   }
   .hero {
     padding: 6rem 1.25rem 3rem;
