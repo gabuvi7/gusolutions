@@ -68,6 +68,7 @@ window.setLang = setLang;
 /* ---------- init after DOM ---------- */
 document.addEventListener("DOMContentLoaded", () => {
   setLang(currentLang);
+  setYear();
   initFadeIn();
   initProjTabs();
   initLightbox();
@@ -77,6 +78,12 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactForm();
   announceEditMode();
 });
+
+/* ---------- current year ------*/
+function setYear(){
+  const yearEl = document.getElementById("current-year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+}
 
 /* ---------- fade in ---------- */
 function initFadeIn() {
