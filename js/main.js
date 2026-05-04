@@ -41,7 +41,7 @@ function applyTweaks() {
 applyTweaks();
 
 /* ---------- i18n ---------- */
-let currentLang = localStorage.getItem("gu_lang") || "en";
+let currentLang = localStorage.getItem("gu_lang") || "es";
 
 function setLang(lang) {
   currentLang = lang;
