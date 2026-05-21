@@ -1,6 +1,5 @@
 /* ============================================================
-   GU Solutions — Redesign
-   Theme + typography tokens are set by JS via data-* attrs
+   GU Solutions — Brand identity
    ============================================================ */
 
 *,
@@ -12,14 +11,36 @@
 }
 
 :root {
+  /* Brand color tokens */
+  --color-brand-navy: #00327A;
+  --color-brand-blue: #007BFF;
+  --color-brand-blue-soft: #E8F2FF;
+  --color-graphite: #252C33;
+  --color-graphite-muted: #4B5563;
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-surface-soft: #F1F5F9;
+  --color-border: #D8E0EA;
+  --color-border-soft: #E7ECF2;
+
+  /* Accent (brand fixed) */
+  --accent: #007BFF;
+  --accent-2: #00327A;
+  --on-accent: #FFFFFF;
+
+  /* Font defaults */
+  --f-display: "Space Grotesk", system-ui, sans-serif;
+  --f-body: "Inter", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, monospace;
+  --display-weight: 600;
+  --display-tracking: -0.03em;
+
   /* spacing */
   --unit: 1rem;
   --container: 1240px;
   --radius-sm: 4px;
   --radius-md: 10px;
   --radius-lg: 18px;
-
-  /* density (overridden by data-density) */
   --pad-section-y: 7rem;
   --pad-section-x: 2.5rem;
   --gap-stack: 1.25rem;
@@ -29,139 +50,40 @@
   --dur: 260ms;
 }
 
-/* ------------ DENSITY ------------- */
-[data-density="compact"] {
-  --pad-section-y: 4.5rem;
-  --pad-section-x: 2rem;
-  --gap-stack: 0.85rem;
-}
-[data-density="spacious"] {
-  --pad-section-y: 9rem;
-  --pad-section-x: 3rem;
-  --gap-stack: 1.75rem;
-}
-
 /* ------------ THEMES ------------- */
-/* Dark */
 [data-theme="dark"] {
-  --bg: oklch(0.18 0.005 80);
-  --bg-2: oklch(0.22 0.006 80);
-  --bg-3: oklch(0.26 0.007 80);
-  --fg: oklch(0.97 0.004 80);
-  --fg-muted: oklch(0.72 0.006 80);
-  --fg-faint: oklch(0.52 0.006 80);
-  --border: oklch(1 0 0 / 0.09);
-  --border-strong: oklch(1 0 0 / 0.18);
-  --card: oklch(0.21 0.005 80);
-  --card-hover: oklch(0.245 0.006 80);
-  --overlay: oklch(0.12 0.004 80 / 0.92);
-  --on-accent: oklch(0.18 0.005 80);
-  --shadow-lg: 0 30px 80px oklch(0 0 0 / 0.55);
-  --shadow-md: 0 12px 32px oklch(0 0 0 / 0.35);
-  --input-bg: oklch(0.24 0.006 80);
+  --bg: #1A1F24;
+  --bg-2: #232930;
+  --bg-3: #2A323B;
+  --fg: #F1F5F9;
+  --fg-muted: #94A3B8;
+  --fg-faint: #6B7280;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --card: #232930;
+  --card-hover: #2A323B;
+  --overlay: rgba(26, 31, 36, 0.92);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.55);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.35);
+  --input-bg: #232930;
+  --accent-2: #4DA3FF;
 }
 
-/* Light */
 [data-theme="light"] {
-  --bg: oklch(0.985 0.004 80);
-  --bg-2: oklch(0.96 0.006 80);
-  --bg-3: oklch(0.92 0.008 80);
-  --fg: oklch(0.22 0.01 80);
-  --fg-muted: oklch(0.46 0.012 80);
-  --fg-faint: oklch(0.62 0.012 80);
-  --border: oklch(0.22 0.01 80 / 0.12);
-  --border-strong: oklch(0.22 0.01 80 / 0.28);
-  --card: oklch(0.99 0.003 80);
-  --card-hover: oklch(0.955 0.006 80);
-  --overlay: oklch(0.98 0.004 80 / 0.9);
-  --on-accent: oklch(0.98 0.004 80);
-  --shadow-lg: 0 30px 60px oklch(0.2 0.01 80 / 0.12);
-  --shadow-md: 0 8px 24px oklch(0.2 0.01 80 / 0.08);
-  --input-bg: oklch(0.985 0.004 80);
-}
-
-/* ------------ ACCENTS (match chroma/lightness, vary hue) ------------- */
-[data-accent="olive"] {
-  --accent: oklch(0.8 0.13 115);
-  --accent-2: oklch(0.72 0.12 175);
-}
-[data-accent="ink"] {
-  --accent: oklch(0.65 0.16 245);
-  --accent-2: oklch(0.7 0.14 195);
-}
-[data-accent="ember"] {
-  --accent: oklch(0.7 0.17 45);
-  --accent-2: oklch(0.72 0.13 75);
-}
-[data-accent="forest"] {
-  --accent: oklch(0.62 0.13 155);
-  --accent-2: oklch(0.7 0.1 115);
-}
-[data-accent="rose"] {
-  --accent: oklch(0.72 0.16 15);
-  --accent-2: oklch(0.72 0.14 325);
-}
-[data-accent="mono"] {
-  --accent: oklch(0.98 0.004 80);
-  --accent-2: oklch(0.72 0.006 80);
-}
-
-[data-theme="light"][data-accent="mono"] {
-  --accent: oklch(0.18 0.005 80);
-  --accent-2: oklch(0.4 0.01 80);
-}
-[data-theme="light"][data-accent="olive"] {
-  --accent: oklch(0.52 0.13 115);
-}
-[data-theme="light"][data-accent="ember"] {
-  --accent: oklch(0.58 0.18 45);
-}
-[data-theme="light"][data-accent="forest"] {
-  --accent: oklch(0.48 0.13 155);
-}
-[data-theme="light"][data-accent="ink"] {
-  --accent: oklch(0.48 0.16 245);
-}
-[data-theme="light"][data-accent="rose"] {
-  --accent: oklch(0.55 0.17 15);
-}
-
-/* on-accent stays readable for all */
-[data-theme="dark"][data-accent="mono"] {
-  --on-accent: oklch(0.18 0.005 80);
-}
-[data-theme="light"][data-accent="mono"] {
-  --on-accent: oklch(0.98 0.004 80);
-}
-
-/* ------------ TYPOGRAPHY PAIRINGS ------------- */
-[data-type="editorial"] {
-  --f-display: "Instrument Serif", Georgia, serif;
-  --f-body: "Inter", system-ui, sans-serif;
-  --f-mono: "JetBrains Mono", ui-monospace, monospace;
-  --display-weight: 400;
-  --display-tracking: -0.01em;
-}
-[data-type="geometric"] {
-  --f-display: "Space Grotesk", system-ui, sans-serif;
-  --f-body: "Inter", system-ui, sans-serif;
-  --f-mono: "JetBrains Mono", ui-monospace, monospace;
-  --display-weight: 600;
-  --display-tracking: -0.03em;
-}
-[data-type="humanist"] {
-  --f-display: "Fraunces", Georgia, serif;
-  --f-body: "IBM Plex Sans", system-ui, sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, monospace;
-  --display-weight: 500;
-  --display-tracking: -0.015em;
-}
-[data-type="brutal"] {
-  --f-display: "Archivo", system-ui, sans-serif;
-  --f-body: "Archivo", system-ui, sans-serif;
-  --f-mono: "JetBrains Mono", ui-monospace, monospace;
-  --display-weight: 800;
-  --display-tracking: -0.035em;
+  --bg: #F8FAFC;
+  --bg-2: #F1F5F9;
+  --bg-3: #E8F2FF;
+  --fg: #252C33;
+  --fg-muted: #4B5563;
+  --fg-faint: #94A3B8;
+  --border: #D8E0EA;
+  --border-strong: #BAC5D4;
+  --card: #FFFFFF;
+  --card-hover: #F8FAFC;
+  --overlay: rgba(248, 250, 252, 0.9);
+  --shadow-lg: 0 30px 60px rgba(37, 44, 51, 0.10);
+  --shadow-md: 0 8px 24px rgba(37, 44, 51, 0.07);
+  --input-bg: #FFFFFF;
 }
 
 /* ============================================================
@@ -263,9 +185,6 @@ section.full > .inner {
 /* ============================================================
    NAV
    ============================================================ */
-/* ============================================================
-   NAV
-   ============================================================ */
 .nav {
   position: fixed;
   top: 0;
@@ -285,7 +204,7 @@ section.full > .inner {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-family: "Space Grotesk", var(--f-sans);
+  font-family: var(--f-display);
   font-size: 16px;
   font-weight: 400;
   letter-spacing: -0.02em;
@@ -301,6 +220,9 @@ section.full > .inner {
 }
 .nav-logo-word {
   font-weight: 500;
+}
+.nav-logo-gu {
+  color: var(--color-brand-navy);
 }
 .nav-logo-dot {
   width: 6px;
@@ -466,10 +388,6 @@ section.full > .inner {
   font-style: italic;
   font-family: var(--f-display);
 }
-[data-type="brutal"] .hero-title .em,
-[data-type="geometric"] .hero-title .em {
-  font-style: normal;
-}
 
 .hero-sub {
   font-size: clamp(1rem, 1.15vw, 1.12rem);
@@ -539,11 +457,19 @@ section.full > .inner {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse at top right,
-    color-mix(in oklab, var(--accent) 10%, transparent),
-    transparent 60%
-  );
+  background:
+    radial-gradient(
+      ellipse at top right,
+      color-mix(in oklab, var(--accent) 10%, transparent),
+      transparent 60%
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 32px,
+      color-mix(in oklab, var(--accent-2) 4%, transparent) 32px,
+      color-mix(in oklab, var(--accent-2) 4%, transparent) 33px
+    );
   pointer-events: none;
 }
 .hero-card-head {
@@ -600,24 +526,6 @@ section.full > .inner {
   width: 13px;
   height: 13px;
   stroke: var(--accent);
-}
-
-/* hero variants (STYLE tweak) */
-[data-hero="brutal"] .hero-title {
-  font-family: var(--f-body);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-}
-[data-hero="brutal"] .hero-title .em {
-  font-style: normal;
-}
-[data-hero="minimal"] .hero {
-  grid-template-columns: 1fr;
-  max-width: 920px;
-  text-align: left;
-}
-[data-hero="minimal"] .hero-card {
-  display: none;
 }
 
 /* ============================================================

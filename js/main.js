@@ -1,15 +1,11 @@
 /* ============================================================
-   GU Solutions — Redesign
-   i18n + tweaks + interactions
+   GU Solutions — Brand identity
+   i18n + interactions
    ============================================================ */
 
-/* ---------- TWEAK DEFAULTS (persisted by host) ---------- */
+/* ---------- TWEAK DEFAULTS ---------- */
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/ {
-  theme: "dark",
-  accent: "forest",
-  type: "geometric",
-  density: "normal",
-  hero: "editorial",
+  theme: "light",
 }; /*EDITMODE-END*/
 
 const STORE_KEY = "gu_tweaks_v1";
@@ -31,12 +27,7 @@ function saveTweaks(t) {
 const state = loadTweaks();
 
 function applyTweaks() {
-  const root = document.documentElement;
-  root.setAttribute("data-theme", state.theme);
-  root.setAttribute("data-accent", state.accent);
-  root.setAttribute("data-type", state.type);
-  root.setAttribute("data-density", state.density);
-  root.setAttribute("data-hero", state.hero);
+  document.documentElement.setAttribute("data-theme", state.theme);
 }
 applyTweaks();
 
@@ -181,46 +172,6 @@ const TWEAK_SCHEMA = [
     options: [
       { v: "dark", label: "Oscuro" },
       { v: "light", label: "Claro" },
-    ],
-  },
-  {
-    key: "accent",
-    label: "Acento",
-    options: [
-      { v: "ember", label: "Ember", color: "oklch(0.70 0.17 45)" },
-      { v: "ink", label: "Ink", color: "oklch(0.65 0.16 245)" },
-      { v: "forest", label: "Forest", color: "oklch(0.62 0.13 155)" },
-      { v: "olive", label: "Olive", color: "oklch(0.80 0.13 115)" },
-      { v: "rose", label: "Rose", color: "oklch(0.72 0.16 15)" },
-      { v: "mono", label: "Mono", color: "oklch(0.7 0 0)" },
-    ],
-  },
-  {
-    key: "type",
-    label: "Tipografía",
-    options: [
-      { v: "editorial", label: "Editorial" },
-      { v: "geometric", label: "Geometric" },
-      { v: "humanist", label: "Humanist" },
-      { v: "brutal", label: "Brutal" },
-    ],
-  },
-  {
-    key: "density",
-    label: "Densidad",
-    options: [
-      { v: "compact", label: "Compacta" },
-      { v: "normal", label: "Normal" },
-      { v: "spacious", label: "Amplia" },
-    ],
-  },
-  {
-    key: "hero",
-    label: "Hero",
-    options: [
-      { v: "editorial", label: "Editorial" },
-      { v: "brutal", label: "Brutal" },
-      { v: "minimal", label: "Minimal" },
     ],
   },
 ];
