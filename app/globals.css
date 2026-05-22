@@ -20,8 +20,12 @@ svg {
   display: block;
 }
 
-:where(a, button, input, textarea):focus-visible {
+:where(a, button, input, textarea, select):focus-visible {
   @apply outline outline-2 outline-offset-4 outline-brand-blue;
+}
+
+:where(input, textarea, select) {
+  font-size: 1rem;
 }
 
 [data-lang="es"] .lang-en,
@@ -100,6 +104,10 @@ svg {
 
 .button-primary svg {
   @apply h-4 w-4;
+}
+
+.button-primary:disabled {
+  @apply cursor-not-allowed opacity-70 hover:translate-y-0 hover:bg-brand-blue;
 }
 
 .button-secondary {
@@ -193,6 +201,110 @@ svg {
 
 .hero-card-foot svg {
   @apply h-4 w-4 text-brand-blue;
+}
+
+.contact-wrap {
+  @apply grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-start;
+}
+
+.contact-left {
+  @apply flex flex-col gap-5;
+}
+
+.contact-lead {
+  @apply mt-6 max-w-xl font-display text-3xl font-semibold leading-tight tracking-tight text-graphite sm:text-4xl;
+}
+
+.contact-sub {
+  @apply max-w-xl text-base leading-8 text-slate-600;
+}
+
+.contact-links {
+  @apply mt-2 grid gap-3;
+}
+
+.contact-link {
+  @apply flex min-h-12 items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white px-4 py-3 font-mono text-xs font-semibold uppercase tracking-[0.1em] text-graphite shadow-[0_10px_24px_rgba(37,44,51,0.04)] transition hover:-translate-y-0.5 hover:border-brand-blue hover:text-brand-blue;
+}
+
+.contact-form {
+  @apply relative flex flex-col gap-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft sm:p-8;
+}
+
+.contact-form h3 {
+  @apply font-display text-2xl font-semibold tracking-tight text-graphite;
+}
+
+.contact-form-note {
+  @apply mt-1 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-slate-500;
+}
+
+.contact-field-row {
+  @apply grid gap-4 sm:grid-cols-2;
+}
+
+.contact-field {
+  @apply flex flex-col gap-2;
+}
+
+.contact-field label {
+  @apply font-mono text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-slate-500;
+}
+
+.contact-field input,
+.contact-field textarea,
+.contact-field select {
+  @apply min-h-12 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-graphite transition placeholder:text-slate-400 focus:border-brand-blue focus:bg-white focus:outline-none;
+}
+
+.contact-field textarea {
+  @apply min-h-32 resize-y leading-7;
+}
+
+.contact-field select {
+  @apply cursor-pointer appearance-none bg-[linear-gradient(45deg,transparent_50%,#64748b_50%),linear-gradient(135deg,#64748b_50%,transparent_50%)] bg-[length:6px_6px,6px_6px] bg-[position:calc(100%-22px)_50%,calc(100%-17px)_50%] bg-no-repeat pr-10;
+}
+
+.contact-field input:user-invalid,
+.contact-field textarea:user-invalid,
+.contact-field select:user-invalid,
+.contact-field input[aria-invalid="true"],
+.contact-field textarea[aria-invalid="true"],
+.contact-field select[aria-invalid="true"] {
+  @apply border-red-500 bg-red-50;
+}
+
+.contact-field-error {
+  @apply hidden text-sm leading-6 text-red-700;
+}
+
+.contact-field input:user-invalid + .contact-field-error,
+.contact-field textarea:user-invalid + .contact-field-error,
+.contact-field select:user-invalid + .contact-field-error,
+.contact-field input[aria-invalid="true"] + .contact-field-error,
+.contact-field textarea[aria-invalid="true"] + .contact-field-error,
+.contact-field select[aria-invalid="true"] + .contact-field-error {
+  @apply block;
+}
+
+.hp-field {
+  @apply sr-only;
+}
+
+.turnstile-wrap {
+  @apply min-h-[68px];
+}
+
+.contact-status {
+  @apply min-h-7;
+}
+
+.form-success {
+  @apply font-mono text-sm font-semibold uppercase tracking-[0.08em] text-emerald-700;
+}
+
+.form-error {
+  @apply font-mono text-sm font-semibold uppercase tracking-[0.06em] text-red-700;
 }
 
 @media (prefers-reduced-motion: reduce) {
