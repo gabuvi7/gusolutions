@@ -21,13 +21,16 @@ export default function Home() {
   return (
     <>
       <header className="site-header">
-        <nav className="container flex items-center justify-between gap-4 py-3" aria-label="Primary navigation">
+        <nav
+          className="container flex items-center justify-between gap-4 py-3"
+          aria-label="Primary navigation"
+        >
           <a href="#home" className="nav-brand" aria-label="GU Solutions home">
             <Image
-              src="/logo.png"
+              src="/icon.png"
               alt="GU Solutions"
-              width={1448}
-              height={1086}
+              width={1254}
+              height={1254}
               className="nav-brand-logo"
               sizes="132px"
             />
