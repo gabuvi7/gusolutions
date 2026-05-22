@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --header-height: 4.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  @apply bg-slate-50 text-graphite antialiased;
+}
+
+:where(a, button, input, textarea):focus-visible {
+  @apply outline outline-2 outline-offset-4 outline-brand-blue;
+}
+
+[data-lang="es"] .lang-en,
+[data-lang="en"] .lang-es {
+  display: none;
+}
+
+.container {
+  @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
+}
+
+.site-header {
+  @apply sticky top-0 z-50 border-b border-slate-200/80 bg-slate-50/90 backdrop-blur;
+}
+
+.skip-link {
+  @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-brand-navy focus:px-4 focus:py-2 focus:text-white;
+}
+
+.nav-link {
+  @apply text-sm font-medium text-slate-600 transition hover:text-brand-navy;
+}
+
+.section {
+  @apply container py-16 sm:py-20;
+}
+
+.eyebrow {
+  @apply font-mono text-xs font-semibold uppercase tracking-[0.22em] text-brand-blue;
+}
+
+.section-title {
+  @apply mt-3 max-w-3xl font-display text-3xl font-semibold tracking-tight text-graphite sm:text-5xl;
+}
+
+.section-copy {
+  @apply mt-5 max-w-2xl text-lg leading-8 text-slate-600;
+}
+
+.card-grid {
+  @apply mt-10 grid gap-5 md:grid-cols-3;
+}
+
+.card {
+  @apply rounded-3xl border border-slate-200 bg-white p-6 shadow-soft;
+}
+
+.button-primary {
+  @apply inline-flex min-h-12 items-center justify-center rounded-full bg-brand-blue px-6 py-3 font-semibold text-white transition hover:bg-brand-navy;
+}
+
+.button-secondary {
+  @apply inline-flex min-h-12 items-center justify-center rounded-full border border-slate-300 px-6 py-3 font-semibold text-graphite transition hover:border-brand-blue hover:text-brand-blue;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
