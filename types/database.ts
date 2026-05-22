@@ -3,7 +3,7 @@ export type Json = string | number | boolean | null | { [key: string]: Json | un
 export type Database = {
   public: {
     Tables: {
-      projects: {
+      website_projects: {
         Row: {
           id: number;
           slug: string;
@@ -42,9 +42,10 @@ export type Database = {
           created_at?: string;
           updated_at?: string;
         };
-        Update: Partial<Database["public"]["Tables"]["projects"]["Insert"]>;
+        Update: Partial<Database["public"]["Tables"]["website_projects"]["Insert"]>;
+        Relationships: [];
       };
-      contact_leads: {
+      website_contact_leads: {
         Row: {
           id: number;
           name: string;
@@ -69,7 +70,8 @@ export type Database = {
           user_agent?: string | null;
           created_at?: string;
         };
-        Update: Partial<Database["public"]["Tables"]["contact_leads"]["Insert"]>;
+        Update: Partial<Database["public"]["Tables"]["website_contact_leads"]["Insert"]>;
+        Relationships: [];
       };
     };
     Views: Record<string, never>;
