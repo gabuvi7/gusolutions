@@ -5,7 +5,7 @@ export type Database = {
     Tables: {
       projects: {
         Row: {
-          id: string;
+          id: number;
           slug: string;
           title_es: string;
           title_en: string | null;
@@ -13,7 +13,7 @@ export type Database = {
           category: string | null;
           short_description_es: string;
           short_description_en: string | null;
-          technologies: string[] | null;
+          technologies: string[];
           main_image_url: string | null;
           project_url: string | null;
           is_featured: boolean;
@@ -24,7 +24,7 @@ export type Database = {
           updated_at: string;
         };
         Insert: {
-          id?: string;
+          id?: never;
           slug: string;
           title_es: string;
           title_en?: string | null;
@@ -43,6 +43,33 @@ export type Database = {
           updated_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["projects"]["Insert"]>;
+      };
+      contact_leads: {
+        Row: {
+          id: number;
+          name: string;
+          email: string;
+          phone: string | null;
+          company: string | null;
+          project_type: string | null;
+          message: string;
+          source: string;
+          user_agent: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: never;
+          name: string;
+          email: string;
+          phone?: string | null;
+          company?: string | null;
+          project_type?: string | null;
+          message: string;
+          source?: string;
+          user_agent?: string | null;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["contact_leads"]["Insert"]>;
       };
     };
     Views: Record<string, never>;
