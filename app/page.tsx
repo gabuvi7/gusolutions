@@ -16,6 +16,10 @@ const navItems = [
   ["#contact", "Contact", "Contacto"],
 ] as const;
 
+const portalUrl =
+  process.env.NEXT_PUBLIC_PORTAL_URL?.trim() ||
+  "https://portal.gusolutions.com.ar/login";
+
 export default function Home() {
   return (
     <>
@@ -33,14 +37,30 @@ export default function Home() {
               className="nav-brand-logo"
             />
           </a>
-          <div className="hidden items-center gap-7 md:flex">
-            {navItems.map(([href, en, es]) => (
-              <a key={href} className="nav-link" href={href}>
-                <LocalizedText en={en} es={es} />
-              </a>
-            ))}
+          <div className="nav-center">
+            <div className="hidden items-center gap-7 md:flex">
+              {navItems.map(([href, en, es]) => (
+                <a key={href} className="nav-link" href={href}>
+                  <LocalizedText en={en} es={es} />
+                </a>
+              ))}
+            </div>
           </div>
-          <LanguageToggle />
+          <div className="nav-actions">
+            <a
+              className="nav-portal-link"
+              href={portalUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span className="nav-portal-full">
+                <LocalizedText es="Portal de clientes" en="Client dashboard" />
+              </span>
+              <span className="nav-portal-short">Portal</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <LanguageToggle />
+          </div>
         </nav>
       </header>
       <main id="main" tabIndex={-1}>
