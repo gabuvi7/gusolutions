@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { LocalizedText } from "@/components/ui/localized-text";
+import { trackConversion } from "@/components/ui/analytics";
 import type { Locale } from "@/lib/i18n";
 
 const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim();
@@ -218,6 +219,9 @@ export function ContactForm() {
         input.removeAttribute("aria-invalid");
       });
       setSent(true);
+      trackConversion("contact_form_submit_success", {
+        project_type: String(formData.get("projectType") ?? "") || "unspecified",
+      });
       resetTurnstile();
     } catch {
       setError("network");

@@ -1,9 +1,20 @@
+"use client";
+
 import { LocalizedText } from "@/components/ui/localized-text";
+import { trackConversion } from "@/components/ui/analytics";
 import type { ProjectCardModel } from "@/lib/projects";
 
 export function ProjectCard({ project }: { project: ProjectCardModel }) {
   return (
-    <article className="card flex min-h-full flex-col overflow-hidden p-0">
+    <article
+      className="card flex min-h-full flex-col overflow-hidden p-0"
+      onClick={() => {
+        trackConversion("project_card_click", {
+          project_slug: project.slug,
+          has_project_url: Boolean(project.projectUrl),
+        });
+      }}
+    >
       {project.mainImageUrl ? (
         <img
           src={project.mainImageUrl}
@@ -44,7 +55,16 @@ export function ProjectCard({ project }: { project: ProjectCardModel }) {
         ) : null}
 
         {project.projectUrl ? (
-          <a className="mt-6 text-sm font-semibold text-brand-blue hover:text-brand-navy" href={project.projectUrl}>
+          <a
+            className="mt-6 text-sm font-semibold text-brand-blue hover:text-brand-navy"
+            href={project.projectUrl}
+            onClick={(event) => {
+              event.stopPropagation();
+              trackConversion("external_project_url_click", {
+                project_slug: project.slug,
+              });
+            }}
+          >
             <LocalizedText es="Ver proyecto" en="View project" />
           </a>
         ) : null}

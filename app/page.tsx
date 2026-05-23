@@ -8,6 +8,8 @@ import { Projects } from "@/components/sections/projects";
 import { Services } from "@/components/sections/services";
 import { LanguageToggle } from "@/components/ui/language-toggle";
 import { LocalizedText } from "@/components/ui/localized-text";
+import { ContactSectionTracker } from "@/components/ui/contact-section-tracker";
+import { TrackedLink } from "@/components/ui/tracked-link";
 
 const navItems = [
   ["#services", "Services", "Servicios"],
@@ -47,18 +49,20 @@ export default function Home() {
             </div>
           </div>
           <div className="nav-actions">
-            <a
+            <TrackedLink
               className="nav-portal-link"
               href={portalUrl}
               target="_blank"
               rel="noreferrer"
+              eventName="client_portal_click"
+              eventProperties={{ location: "header" }}
             >
               <span className="nav-portal-full">
                 <LocalizedText es="Portal de clientes" en="Client dashboard" />
               </span>
               <span className="nav-portal-short">Portal</span>
               <span aria-hidden="true">↗</span>
-            </a>
+            </TrackedLink>
             <LanguageToggle />
           </div>
         </nav>
@@ -72,6 +76,7 @@ export default function Home() {
         <About />
         <Contact />
       </main>
+      <ContactSectionTracker />
       <Footer />
     </>
   );

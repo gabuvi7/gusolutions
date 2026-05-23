@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Locale } from "@/lib/i18n";
+import { trackConversion } from "@/components/ui/analytics";
 
 const storageKey = "gu_lang";
 
@@ -21,9 +22,12 @@ export function LanguageToggle() {
   }, []);
 
   function changeLocale(nextLocale: Locale) {
+    if (locale === nextLocale) return;
+
     setLocale(nextLocale);
     applyLocale(nextLocale);
     window.localStorage.setItem(storageKey, nextLocale);
+    trackConversion("language_switch", { language: nextLocale });
   }
 
   return (

@@ -1,5 +1,6 @@
 import { LocalizedText } from "@/components/ui/localized-text";
 import { ContactForm } from "@/components/ui/contact-form";
+import { TrackedLink } from "@/components/ui/tracked-link";
 
 const linkedInUrl = "https://www.linkedin.com/in/uviedo-gabriel/";
 const portalUrl =
@@ -18,17 +19,20 @@ const contactLinks = [
     href: whatsappUrl,
     es: "Contactar por WhatsApp",
     en: "Contact on WhatsApp",
+    eventName: "whatsapp_cta_click",
   },
 
   {
     href: linkedInUrl,
     es: "LinkedIn /uviedo-gabriel",
     en: "LinkedIn /uviedo-gabriel",
+    eventName: "linkedin_click",
   },
   {
     href: portalUrl,
     es: "Portal de clientes",
     en: "Client portal",
+    eventName: "client_portal_click",
   },
 ] as const;
 
@@ -58,18 +62,20 @@ export function Contact() {
           </p>
           <div className="contact-links" aria-label="Contact options">
             {contactLinks.map((link) => (
-              <a
+              <TrackedLink
                 key={link.href}
                 className="contact-link"
                 href={link.href}
                 target={link.href.startsWith("http") ? "_blank" : undefined}
                 rel={link.href.startsWith("http") ? "noopener" : undefined}
+                eventName={link.eventName}
+                eventProperties={{ location: "contact_section" }}
               >
                 <span>
                   <LocalizedText es={link.es} en={link.en} />
                 </span>
                 <span aria-hidden="true">→</span>
-              </a>
+              </TrackedLink>
             ))}
           </div>
         </div>
