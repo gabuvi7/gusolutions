@@ -15,7 +15,7 @@ begin
 end;
 $$;
 
-create table if not exists public.projects (
+create table if not exists public.website_projects (
   id bigint generated always as identity primary key,
   slug text not null,
   title_es text not null,
@@ -34,16 +34,16 @@ create table if not exists public.projects (
   created_at timestamptz not null default timezone('utc', now()),
   updated_at timestamptz not null default timezone('utc', now()),
 
-  constraint projects_slug_key unique (slug),
-  constraint projects_slug_format check (slug ~ '^[a-z0-9]+(?:-[a-z0-9]+)*$'),
-  constraint projects_title_es_not_blank check (length(btrim(title_es)) > 0),
-  constraint projects_short_description_es_not_blank check (length(btrim(short_description_es)) > 0),
-  constraint projects_sort_order_non_negative check (sort_order >= 0),
-  constraint projects_main_image_url_http check (main_image_url is null or main_image_url ~ '^https?://'),
-  constraint projects_project_url_http check (project_url is null or project_url ~ '^https?://')
+  constraint website_projects_slug_key unique (slug),
+  constraint website_projects_slug_format check (slug ~ '^[a-z0-9]+(?:-[a-z0-9]+)*$'),
+  constraint website_projects_title_es_not_blank check (length(btrim(title_es)) > 0),
+  constraint website_projects_short_description_es_not_blank check (length(btrim(short_description_es)) > 0),
+  constraint website_projects_sort_order_non_negative check (sort_order >= 0),
+  constraint website_projects_main_image_url_http check (main_image_url is null or main_image_url ~ '^https?://'),
+  constraint website_projects_project_url_http check (project_url is null or project_url ~ '^https?://')
 );
 
-create table if not exists public.contact_leads (
+create table if not exists public.website_contact_leads (
   id bigint generated always as identity primary key,
   name text not null,
   email text not null,
@@ -55,49 +55,49 @@ create table if not exists public.contact_leads (
   user_agent text,
   created_at timestamptz not null default timezone('utc', now()),
 
-  constraint contact_leads_name_not_blank check (length(btrim(name)) > 0),
-  constraint contact_leads_email_not_blank check (length(btrim(email)) > 0),
-  constraint contact_leads_email_shape check (email ~* '^[^@[:space:]]+@[^@[:space:]]+\.[^@[:space:]]+$'),
-  constraint contact_leads_message_not_blank check (length(btrim(message)) > 0),
-  constraint contact_leads_source_not_blank check (length(btrim(source)) > 0)
+  constraint website_contact_leads_name_not_blank check (length(btrim(name)) > 0),
+  constraint website_contact_leads_email_not_blank check (length(btrim(email)) > 0),
+  constraint website_contact_leads_email_shape check (email ~* '^[^@[:space:]]+@[^@[:space:]]+\.[^@[:space:]]+$'),
+  constraint website_contact_leads_message_not_blank check (length(btrim(message)) > 0),
+  constraint website_contact_leads_source_not_blank check (length(btrim(source)) > 0)
 );
 
-drop trigger if exists set_projects_updated_at on public.projects;
-create trigger set_projects_updated_at
-before update on public.projects
+drop trigger if exists set_website_projects_updated_at on public.website_projects;
+create trigger set_website_projects_updated_at
+before update on public.website_projects
 for each row
 execute function private.set_updated_at();
 
-create index if not exists projects_published_order_idx
-  on public.projects (is_featured desc, sort_order asc, created_at desc)
+create index if not exists website_projects_published_order_idx
+  on public.website_projects (is_featured desc, sort_order asc, created_at desc)
   where is_published = true;
 
-create index if not exists projects_published_category_idx
-  on public.projects (category, sort_order asc)
+create index if not exists website_projects_published_category_idx
+  on public.website_projects (category, sort_order asc)
   where is_published = true and category is not null;
 
-create index if not exists contact_leads_created_at_idx
-  on public.contact_leads (created_at desc);
+create index if not exists website_contact_leads_created_at_idx
+  on public.website_contact_leads (created_at desc);
 
-alter table public.projects enable row level security;
-alter table public.contact_leads enable row level security;
+alter table public.website_projects enable row level security;
+alter table public.website_contact_leads enable row level security;
 
 -- Supabase projects created after 2026-04-28 may not expose new tables to the
 -- Data API automatically. Grant only the API privileges required by the MVP;
 -- RLS policies below still decide which rows are visible or writable.
-grant select on public.projects to anon, authenticated;
-grant insert on public.contact_leads to anon, authenticated;
+grant select on public.website_projects to anon, authenticated;
+grant insert on public.website_contact_leads to anon, authenticated;
 
-drop policy if exists "Published projects are publicly readable" on public.projects;
-create policy "Published projects are publicly readable"
-on public.projects
+drop policy if exists "Website published projects are publicly readable" on public.website_projects;
+create policy "Website published projects are publicly readable"
+on public.website_projects
 for select
 to anon, authenticated
 using (is_published = true);
 
-drop policy if exists "Public visitors can create contact leads" on public.contact_leads;
-create policy "Public visitors can create contact leads"
-on public.contact_leads
+drop policy if exists "Website visitors can create contact leads" on public.website_contact_leads;
+create policy "Website visitors can create contact leads"
+on public.website_contact_leads
 for insert
 to anon, authenticated
 with check (
@@ -110,8 +110,8 @@ with check (
 
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values (
-  'project-images',
-  'project-images',
+  'website-project-images',
+  'website-project-images',
   true,
   5242880,
   array['image/avif', 'image/webp', 'image/png', 'image/jpeg']
@@ -122,17 +122,17 @@ set
   file_size_limit = excluded.file_size_limit,
   allowed_mime_types = excluded.allowed_mime_types;
 
-drop policy if exists "Published project images are publicly readable" on storage.objects;
-create policy "Published project images are publicly readable"
+drop policy if exists "Website published project images are publicly readable" on storage.objects;
+create policy "Website published project images are publicly readable"
 on storage.objects
 for select
 to anon, authenticated
 using (
-  bucket_id = 'project-images'
+  bucket_id = 'website-project-images'
   and exists (
     select 1
-    from public.projects
-    where projects.slug = (storage.foldername(name))[1]
-      and projects.is_published = true
+    from public.website_projects
+    where website_projects.slug = (storage.foldername(name))[1]
+      and website_projects.is_published = true
   )
 );

@@ -482,12 +482,12 @@ This avoids needing a new deployment every time a project, client, description, 
 
 ## 10. Data Model
 
-## 10.1 `projects` table
+## 10.1 `website_projects` table
 
 Recommended initial table structure:
 
 ```sql
-create table projects (
+create table website_projects (
   id uuid primary key default gen_random_uuid(),
   slug text not null unique,
   title text not null,
@@ -534,7 +534,7 @@ If a project needs multiple images, use a separate table.
 ```sql
 create table project_images (
   id uuid primary key default gen_random_uuid(),
-  project_id uuid references projects(id) on delete cascade,
+  project_id uuid references website_projects(id) on delete cascade,
   image_url text not null,
   alt_text_es text,
   alt_text_en text,
@@ -543,16 +543,16 @@ create table project_images (
 );
 ```
 
-For the MVP, this table is optional. A single `main_image_url` field in `projects` may be enough.
+For the MVP, this table is optional. A single `main_image_url` field in `website_projects` may be enough.
 
 ---
 
-## 10.3 Optional `contact_leads` table
+## 10.3 Optional `website_contact_leads` table
 
 If contact submissions should be stored in Supabase, create a table for leads.
 
 ```sql
-create table contact_leads (
+create table website_contact_leads (
   id uuid primary key default gen_random_uuid(),
   name text not null,
   email text not null,
@@ -832,7 +832,7 @@ Possible options:
 
 ## 14. Supabase Security Rules
 
-## 14.1 Projects table
+## 14.1 Website projects table
 
 Public users should be able to read only published projects.
 
@@ -840,18 +840,18 @@ Recommended policy:
 
 ```sql
 create policy "Allow public read access to published projects"
-on projects
+on website_projects
 for select
 using (is_published = true);
 ```
 
-Only authenticated admin users should be able to insert, update, or delete projects.
+Only authenticated admin users should be able to insert, update, or delete website projects.
 
 For the MVP, admin operations can be done manually from Supabase Studio.
 
 ---
 
-## 14.2 Contact leads table
+## 14.2 Website contact leads table
 
 Public users may insert contact leads, but should not be able to read them.
 
@@ -859,12 +859,12 @@ Recommended policies:
 
 ```sql
 create policy "Allow public insert contact leads"
-on contact_leads
+on website_contact_leads
 for insert
 with check (true);
 ```
 
-Do not create a public select policy for `contact_leads`.
+Do not create a public select policy for `website_contact_leads`.
 
 ---
 
@@ -1155,7 +1155,7 @@ Recommended logic:
 
 ```ts
 const { data: projects } = await supabase
-  .from('projects')
+  .from('website_projects')
   .select('*')
   .eq('is_published', true)
   .order('is_featured', { ascending: false })

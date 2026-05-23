@@ -27,12 +27,12 @@ export function LanguageToggle() {
   }
 
   return (
-    <div className="inline-flex rounded-full border border-slate-200 bg-white p-1" aria-label="Language selector">
+    <div className="language-toggle" aria-label="Language selector">
       {(["es", "en"] as const).map((option) => (
         <button
           key={option}
           type="button"
-          className={`rounded-full px-3 py-1.5 text-sm font-semibold ${locale === option ? "bg-brand-blue text-white" : "text-slate-600"}`}
+          className={locale === option ? "is-active" : undefined}
           aria-pressed={locale === option}
           onClick={() => changeLocale(option)}
         >
