@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { About } from "@/components/sections/about";
 import { Benefits } from "@/components/sections/benefits";
 import { Contact } from "@/components/sections/contact";
@@ -26,13 +25,12 @@ export default function Home() {
           aria-label="Primary navigation"
         >
           <a href="#home" className="nav-brand" aria-label="GU Solutions home">
-            <Image
-              src="/icon.png"
+            <img
+              src="/icon.svg"
               alt="GU Solutions"
-              width={1254}
-              height={1254}
+              width="1254"
+              height="1254"
               className="nav-brand-logo"
-              sizes="132px"
             />
           </a>
           <div className="hidden items-center gap-7 md:flex">

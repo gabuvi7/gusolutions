@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { LocalizedText } from "@/components/ui/localized-text";
+import type { Locale } from "@/lib/i18n";
 
 const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim();
 const turnstileScriptUrl = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
@@ -53,6 +54,14 @@ const messages = {
   },
 } satisfies Record<string, { es: string; en: string }>;
 
+const projectTypeOptions = [
+  { value: "", es: "Seleccioná una opción", en: "Select an option" },
+  { value: "website", es: "Sitio web / landing", en: "Website / landing page" },
+  { value: "business-system", es: "Sistema interno", en: "Internal system" },
+  { value: "automation", es: "Automatización", en: "Automation" },
+  { value: "consulting", es: "Consultoría", en: "Consulting" },
+] as const;
+
 type TurnstileApi = {
   render: (element: HTMLElement, options: { sitekey: string; theme?: "auto" | "light" | "dark" }) => string;
   getResponse: (widgetId: string) => string;
@@ -91,10 +100,37 @@ function errorMessage(code: string | null) {
   return messages[code as keyof typeof messages] ?? messages.generic;
 }
 
+function readDocumentLocale(): Locale {
+  if (typeof document === "undefined") return "es";
+  return document.documentElement.dataset.lang === "en" ? "en" : "es";
+}
+
+function useDocumentLocale() {
+  const [locale, setLocale] = useState<Locale>("es");
+
+  useEffect(() => {
+    setLocale(readDocumentLocale());
+
+    const observer = new MutationObserver(() => {
+      setLocale(readDocumentLocale());
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-lang"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return locale;
+}
+
 export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const turnstileRef = useRef<HTMLDivElement>(null);
   const turnstileWidgetId = useRef<string | null>(null);
+  const locale = useDocumentLocale();
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -228,11 +264,11 @@ export function ContactForm() {
       <div className="contact-field">
         <label htmlFor="contact-project-type"><LocalizedText es="Tipo de proyecto" en="Project type" /></label>
         <select id="contact-project-type" name="projectType" defaultValue="">
-          <option value=""><LocalizedText es="Seleccioná una opción" en="Select an option" /></option>
-          <option value="website"><LocalizedText es="Sitio web / landing" en="Website / landing page" /></option>
-          <option value="business-system"><LocalizedText es="Sistema interno" en="Internal system" /></option>
-          <option value="automation"><LocalizedText es="Automatización" en="Automation" /></option>
-          <option value="consulting"><LocalizedText es="Consultoría" en="Consulting" /></option>
+          {projectTypeOptions.map((option) => (
+            <option key={option.value || "placeholder"} value={option.value}>
+              {option[locale]}
+            </option>
+          ))}
         </select>
       </div>
 
