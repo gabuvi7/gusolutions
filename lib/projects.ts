@@ -3,7 +3,7 @@ import { cacheLife, cacheTag } from "next/cache";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import type { Tables } from "@/types/database";
 
-type ProjectRow = Tables<"projects">;
+type ProjectRow = Tables<"website_projects">;
 
 export type ProjectCardModel = {
   slug: string;
@@ -100,7 +100,7 @@ export async function getPublishedProjects(): Promise<ProjectCardModel[]> {
   }
 
   const { data, error } = await supabase
-    .from("projects")
+    .from("website_projects")
     .select(
       "slug,title_es,title_en,client_name,category,short_description_es,short_description_en,technologies,main_image_url,project_url,is_featured,is_in_progress,sort_order,is_published,created_at,updated_at,id",
     )
