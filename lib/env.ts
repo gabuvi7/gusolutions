@@ -5,12 +5,14 @@ type PublicSupabaseEnv = {
 
 function readEnv(name: string) {
   const value = process.env[name];
-  return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined;
+  return typeof value === "string" && value.trim().length > 0
+    ? value.trim()
+    : undefined;
 }
 
 export function getPublicSupabaseEnv(): PublicSupabaseEnv | null {
   const url = readEnv("NEXT_PUBLIC_SUPABASE_URL");
-  const publishableKey = readEnv("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY") ?? readEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY");
+  const publishableKey = readEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY");
 
   if (!url || !publishableKey) {
     return null;
